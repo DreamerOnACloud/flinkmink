@@ -1,5 +1,24 @@
 /* homepage.css */
 
+/* Basic reset and box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure the body takes up the full height and uses flexbox */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Container to hold the main content */
+.container {
+    flex: 1;
+}
+
 /* Navbar */
 .navbar {
     background-color: #5bc0de;
@@ -15,7 +34,7 @@
     font-weight: bold;
 }
 
-/* Content with Image */
+/* Inline Content */
 .inline-content {
     display: flex;
     align-items: center;
@@ -132,20 +151,17 @@
 
 /* Footer */
 footer {
-    text-align: center;
+    background-color: #f8f9fa;
     padding: 20px;
-    background-color: #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .footer-content {
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-footer p {
-    margin: 0;
-    margin-right: 20px;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .footer-links a {
@@ -153,4 +169,8 @@ footer p {
     text-decoration: none;
     color: black;
     font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
 }
