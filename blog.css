@@ -1,5 +1,24 @@
 /* blog.css */
 
+/* Basic reset and box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure the body takes up the full height and uses flexbox */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Container to hold the main content */
+.container {
+    flex: 1;
+}
+
 /* Navbar */
 .navbar {
     background-color: #5bc0de;
