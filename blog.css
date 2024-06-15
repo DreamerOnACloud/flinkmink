@@ -24,6 +24,7 @@
 
 .blog-header h2 {
     margin: 0;
+    font-size: 24px;
 }
 
 /* Blog Posts */
@@ -37,19 +38,67 @@
     padding: 20px 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .blog-post-card h3 {
     margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .blog-post-card p {
     margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #555;
 }
 
 .read-post {
-    align-self: flex-end;
     color: #f7941e;
     text-decoration: none;
     font-weight: bold;
+    border: 1px solid #f7941e;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.read-post:hover {
+    background-color: #f7941e;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer-name p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.footer-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
 }
