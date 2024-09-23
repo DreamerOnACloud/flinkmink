@@ -28,3 +28,9 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+h1 {
+    height: 60px;
+    font-weight: 700;
+    font-size: 32px;
+}
