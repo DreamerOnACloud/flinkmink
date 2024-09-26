@@ -12,9 +12,9 @@ import PostList from "../components/PostList.astro";
 const posts = await getCollection("posts");
 ---
 
-<GlobalLayout title="Konstantinos Norgias blog.">
+<GlobalLayout title="Blog posts">
 	<Main>
-		<H1 text="Konstantinos Norgias blog."></H1>
-            <PostList posts={posts}/>
+		<H1 text="Blog posts"></H1>
+        <PostList posts={posts}/>
 	</Main>
 </GlobalLayout>
