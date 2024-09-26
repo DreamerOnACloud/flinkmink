@@ -2,7 +2,7 @@
 author: "Dreamer On A Cloud"
 title: "Emergence: The Concept of Complex Systems"
 date: "25/09/2024"
-image: "/images/flock-of-birds.webp"
+image: "./images/flock-of-birds.webp"
 tags: ["sociology", "physics"]
 ---
 
