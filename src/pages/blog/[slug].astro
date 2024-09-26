@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import H1 from "../../components/H1.astro";
 import Main from "../../components/Main.astro";
 import GlobalLayout from "../../layouts/GlobalLayout.astro";
+import { Image } from "astro:assets";
 
 // Dynamic routes: This piece of code - getStaticPaths - is what triggers Astro to replace '[slug].astro' file and dynamically generate a new file for each item in 'src/content/posts/'
 export const getStaticPaths = async() => {
@@ -33,7 +34,7 @@ const { Content} = await post.render(); // Get the post's body content via out-o
 	<Main>
 		<H1 text={post.data.title}></H1>
         <a href={`/blog/${post.slug}`}>
-            <img 
+            <Image
                 src={post.data.image}
                 width={1024}
                 height={1024 / 1.5}

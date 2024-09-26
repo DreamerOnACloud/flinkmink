@@ -2,7 +2,7 @@
 author: "Dreamer On A Cloud"
 title: "Sunbathing in Space: Can Astronauts Get a Tan?"
 date: "25/09/2024"
-image: "/images/tree.jpg"
+image: "/images/space.jpeg"
 tags: ["science", "space"]
 ---
 
