@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+// Pattern: first, define "Props", then destructure below via "Astro.props"
+type Props = {
+    //posts the collection entry/type 'posts' from 'astro/src/content/config.ts'
+    project: CollectionEntry<'projects'>
+}
+
+const { project } = Astro.props;
+---
+
+<article>
+    <a href={`/projects/${project.slug}`}>
+        <Image 
+            src={project.data.image}
+            width={600}
+            height={600 / 1.5}
+            alt={project.data.title}
+            class="rounded-2xl shadow-xl mb-4 aspect-thumbnail object-cover"
+        />
+    </a>
+    <a
+        href={`/projects/${project.slug}`}
+        class="text-4xl text-zinc-900 font-semibold inline-block"
+    >
+        <h2>{project.data.title}</h2>
+    </a>
+    <p class="text-zinc-500 text-2xl line-clamp-2">
+        {project.data.description}
+    </p>
+</article>

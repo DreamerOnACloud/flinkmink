@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Project from "./Project.astro";
+
+// Pattern: first, define "Props", then destructure below via "Astro.props"
+type Props = {
+    //posts is an array of the collection entry/type 'posts' from 'astro/src/content/config.ts'
+    projects: CollectionEntry<'projects'>[]
+}
+
+const { projects } = Astro.props;
+---
+
+ <!-- CSS grid with 2 columns on "bigger" screens and 1 column on "smaller" screens -->
+<div
+    class="grid grid-cols-2 gap-x-16 gap-y-16 max-md:grid-cols-1 mb-24"
+>
+    <!--for each 'post', use 'Post' component and pass 'post' as property -->
+    {projects.map((project) => <Project project={project}/>)}
+</div>

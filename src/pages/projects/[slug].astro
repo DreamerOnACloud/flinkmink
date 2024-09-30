@@ -1,0 +1,32 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+
+// Dynamic routes: This piece of code - getStaticPaths - is what triggers Astro to replace '[slug].astro' file and dynamically generate a new file for each item in 'src/content/projects/'
+export const getStaticPaths = async() => {
+    const projects = await getCollection("projects");
+    const paths = projects.map((project: { slug: any; }) => {
+        return {
+            params: {
+                slug: project.slug
+            },
+            props: {
+                project,
+                slug: project.slug // The filename,
+            }
+        }
+    })
+
+    return paths; // ! It's important to return the paths in the end.
+}
+
+type Props = {
+    project: CollectionEntry<"projects">
+    slug: string; // Add the slug as a type
+}
+
+const { project, slug } = Astro.props;
+---
+
+<ProjectLayout project={project} slug={slug} />
+
