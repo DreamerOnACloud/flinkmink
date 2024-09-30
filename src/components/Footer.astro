@@ -1,0 +1,60 @@
+---
+const twitterUrl = 'https://twitter.com/CloudDreamer11';
+const mediumUrl = 'https://medium.com/@DreamerOnACloud';
+const currentYear = new Date().getFullYear();
+---
+
+<div class="footer bg-gray-200 text-teal-900" >
+    <div class="footer-left">
+        <a href="/">
+            <div class="footer-left-content">
+                &copy; Konstantinos Norgias - {currentYear}
+            </div>
+        </a>
+        
+    </div>
+
+    <div class="footer-right">
+        <div class="footer-right-content">
+            <div class="footer-right-content-element">
+                <a href={twitterUrl}> Twitter </a>
+            </div>
+            <div class="footer-right-content-element">
+                <a href={mediumUrl}> Medium </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .footer {
+        display: flex;
+        width: 100vw;
+        padding: 20px;        
+    }
+
+    .footer-left {
+        display: flex;
+        width: 50%;
+        align-items: center;
+    }
+
+    .footer-left-content {
+        font-size: large;
+        font-weight: bold;
+    }
+
+    .footer-right-content {
+        font-weight: bold;
+    }
+
+    .footer-right {
+        display: flex;
+        width: 50%;
+        justify-content: flex-end;
+    }
+
+    .footer-right-content-element {
+        padding: 8px;
+    }
+</style>
