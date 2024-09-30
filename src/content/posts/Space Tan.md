@@ -3,6 +3,7 @@ author: "Dreamer On A Cloud"
 title: "Sunbathing in Space: Can Astronauts Get a Tan?"
 date: "25/09/2024"
 image: "./images/space.jpeg"
+description: "When we think of tanning, we usually imagine relaxing under the sun on a beach. But have you ever wondered if astronauts can get a tan while orbiting Earth?"
 tags: ["science", "space"]
 ---
 
