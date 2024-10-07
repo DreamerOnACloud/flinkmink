@@ -1,6 +1,14 @@
 ---
 const response = await fetch('https://dreameronacloud.netlify.app/.netlify/functions/fetch-notion');
 
+// Log the raw response to check its content type
+const contentType = response.headers.get('content-type');
+if (contentType && contentType.includes('text/html')) {
+  const errorText = await response.text();
+  console.error('Received HTML response instead of JSON:', errorText);
+  throw new Error('Server returned an HTML response instead of JSON');
+}
+
 const localNotionData = await response.json();
 const localCards = localNotionData.results; // Array of objects
 ---
