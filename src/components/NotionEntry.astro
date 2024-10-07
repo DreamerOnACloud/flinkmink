@@ -7,6 +7,7 @@ const response = await fetch(`${NOTION_API_URL}`);
 const localNotionData = await response.json();
 const localCards = localNotionData.results; // Array of objects
 ---
+
 <main id="card-container">
   {localCards.map((card: any) => (
     <article class="card">
