@@ -1,7 +1,5 @@
 ---
-const NOTION_API_URL = import.meta.env.NOTION_API_URL;
-
-const response = await fetch(`${NOTION_API_URL}`);
+const response = await fetch('https://dreameronacloud.netlify.app/.netlify/functions/fetch-notion');
 
 const localNotionData = await response.json();
 const localCards = localNotionData.results; // Array of objects
