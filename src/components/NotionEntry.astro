@@ -1,5 +1,7 @@
 ---
-const response = await fetch('https://dreameronacloud.netlify.app/.netlify/functions/fetch-notion');
+const NOTION_API_URL = import.meta.env.NOTION_API_URL;
+
+const response = await fetch(NOTION_API_URL);
 
 // Log the raw response to check its content type
 const contentType = response.headers.get('content-type');
