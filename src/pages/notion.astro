@@ -1,0 +1,29 @@
+---
+import Notion from '../components/Notion.astro';
+---
+
+<html lang="en">
+    <head>
+        <title>Document</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <!-- the props -->
+        <link rel="stylesheet" href="https://unpkg.com/open-props"/>
+
+        <!-- optional imports that use the props -->
+        <link rel="stylesheet" href="https://unpkg.com/open-props/normalize.min.css"/>
+    </head>
+    <body>
+        <Notion />
+    </body>
+</html>
+
+<style>
+    body {
+        color: #0c0c0c;
+        display: grid;
+        place-content: center;
+        background-image: var(--gradient-15);
+    }
+</style>

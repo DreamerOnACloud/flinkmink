@@ -1,0 +1,83 @@
+---
+// Typescript for defining the type of NotionCard
+interface NotionCard {
+  properties: {
+    ImageSource: {
+      rich_text: { plain_text: string }[];
+    };
+    Name: {
+      title: { plain_text: string }[];
+    };
+    Description: {
+      rich_text: { plain_text: string }[];
+    };
+  };
+}
+
+const { NOTION_API_URL } = process.env;
+
+const response = await fetch(`${NOTION_API_URL}`);
+// const response = await fetch('https://your-site.netlify.app/.netlify/functions/fetch-notion');
+
+const localNotionData = await response.json();
+const localCards: NotionCard[] = localNotionData.results; // Array of objects
+
+console.log(localCards);
+---
+<main id="card-container">
+  {localCards.map(card => (
+    <article class="card">
+      <img src={card.properties.ImageSource.rich_text[0]?.plain_text} class="card__image" />
+      <h2 class="card__heading">{card.properties.Title.rich_text[0]?.plain_text}</h2>
+      <div class="card__content">
+        <p>{card.properties.Description.rich_text[0]?.plain_text}</p>
+      </div>
+      <a href="#">
+        <div class="card__btn">READ POST</div>
+      </a>
+    </article>
+  ))}
+</main>
+
+<style>
+  .card {
+      flex: 0 1 400px;
+      box-shadow: var(--shadow-5);
+      padding: var(--size-fluid-3);
+      border-radius: var(--radius-4);
+      background-color: var(--violet-0);
+  }
+
+  .card__heading {
+    font-size: larger;
+    font-weight: 500;
+    min-width: 100%;
+    margin-bottom: 8px;
+  }
+
+  #card-container {
+        display: flex;
+        align-items: start;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--size-fluid-4);
+        margin: var(--size-fluid-4);
+        max-width: 1200px;
+    }
+
+    .card__btn {
+        background-color: blueviolet !important;
+        color: white;
+        padding: 8px;
+        border-radius: 8px;
+        margin-top: 20px;
+        box-shadow: var(--shadow-4);
+        transition: all 250ms var(--ease-squish-3);
+    }
+
+    .card__btn:is(:hover, :focus) {
+        text-decoration: none;
+        box-shadow: none;
+        transform: scale(.9);
+    }
+</style>
