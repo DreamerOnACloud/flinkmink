@@ -1,4 +1,3 @@
-import type { Context } from "@netlify/functions";
 const { Client } = require("@notionhq/client");
 
 // Fetching environment variables
@@ -9,7 +8,7 @@ const notion = new Client({
   auth: NOTION_KEY,
 });
 
-export default async (req: Request, context: Context) => {
+const handler = async (req, context) => {
   try {
     // Ensure that the Notion database ID is available
     if (!NOTION_DB) {
@@ -28,31 +27,32 @@ export default async (req: Request, context: Context) => {
     });
 
     // Return the response as a JSON string
-    return new Response(JSON.stringify(response), {
-      status: 200,
+    return {
+      statusCode: 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*", // Allow any domain to access this resource
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS", // Allowed methods
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
       },
-    });
-  } catch (error: any) {
+      body: JSON.stringify(response),
+    };
+  } catch (error) {
     console.error("Error querying Notion database:", error.message);
 
     // Return a JSON-formatted error response
-    return new Response(
-      JSON.stringify({
+    return {
+      statusCode: 500,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      },
+      body: JSON.stringify({
         error: "Internal Server Error",
         message: error.message,
       }),
-      {
-        status: 500,
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*", // Allow any domain to access this resource
-          "Access-Control-Allow-Methods": "GET, POST, OPTIONS", // Allowed methods
-        },
-      }
-    );
+    };
   }
 };
+
+module.exports = { handler };
