@@ -15,7 +15,7 @@ const handler = async (req, context) => {
       throw new Error("Missing Notion database ID (NOTION_DB) in environment variables.");
     }
 
-    // Query the Notion database
+    // Query the Notion database (https://developers.notion.com/reference/post-database-query)
     const response = await notion.databases.query({
       database_id: NOTION_DB,
       filter: {
