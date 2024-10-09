@@ -1,45 +1,50 @@
-// This page can be requested on /.netlify/functions/fetch-notion
 import type { Context } from "@netlify/functions";
+const { Client } = require("@notionhq/client");
 
-const { Client } = require("@notionhq/client")
-
-// These env vars are defined and fetched from https://app.netlify.com/sites/dreameronacloud/configuration/env#content
+// Fetching environment variables
 const { NOTION_KEY, NOTION_DB } = process.env;
 
-// Initializing a client
+// Initializing the Notion client
 const notion = new Client({
   auth: NOTION_KEY,
-})
+});
 
-export default async (req: Request, context: Context) => { // The default async request / response netlify function
-  try{
-
-     // Ensure that the required environment variable is available
-     if (!NOTION_DB) {
+export default async (req: Request, context: Context) => {
+  try {
+    // Ensure that the Notion database ID is available
+    if (!NOTION_DB) {
       throw new Error("Missing Notion database ID (NOTION_DB) in environment variables.");
     }
-    
+
+    // Query the Notion database
     const response = await notion.databases.query({
-      database_id: NOTION_DB, // update this on netlify to use another Notion database
-      filter: { // check out how to filter here: https://developers.notion.com/reference/post-database-query-filter#status
+      database_id: NOTION_DB,
+      filter: {
         property: "Status",
         status: {
-          equals: "done"
-        }
+          equals: "done",
+        },
       },
-    })
-    return new Response(JSON.stringify(response));
-  }
-  catch(error: any) {
-    console.error(error);
-
-    // Return an HTTP 500 response with the error message
-    return new Response(JSON.stringify({
-      error: "Internal Server Error",
-      message: error.message,
-    }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" }
     });
+
+    // Return the response as a JSON string
+    return new Response(JSON.stringify(response), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error: any) {
+    console.error("Error querying Notion database:", error.message);
+
+    // Return a JSON-formatted error response
+    return new Response(
+      JSON.stringify({
+        error: "Internal Server Error",
+        message: error.message,
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
-}
+};
