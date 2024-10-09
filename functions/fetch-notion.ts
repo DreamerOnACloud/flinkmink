@@ -30,7 +30,11 @@ export default async (req: Request, context: Context) => {
     // Return the response as a JSON string
     return new Response(JSON.stringify(response), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*", // Allow any domain to access this resource
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS", // Allowed methods
+      },
     });
   } catch (error: any) {
     console.error("Error querying Notion database:", error.message);
@@ -43,7 +47,11 @@ export default async (req: Request, context: Context) => {
       }),
       {
         status: 500,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", // Allow any domain to access this resource
+          "Access-Control-Allow-Methods": "GET, POST, OPTIONS", // Allowed methods
+        },
       }
     );
   }
