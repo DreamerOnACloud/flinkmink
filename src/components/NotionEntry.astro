@@ -1,13 +1,12 @@
 ---
-const NOTION_API_URL = import.meta.env.NOTION_API_URL;
+// const NOTION_API_URL = import.meta.env.NOTION_API_URL;
 
-const response = await fetch(NOTION_API_URL);
+const response = await fetch('/.netlify/functions/fetch-notion');
 
 // Log the raw response to check its content type
 const contentType = response.headers.get('content-type');
 if (contentType && contentType.includes('text/html')) {
-  const errorText = await response.text();
-  console.error('Received HTML response instead of JSON:', errorText);
+  console.error('Received HTML response instead of JSON:');
   throw new Error('Server returned an HTML response instead of JSON');
 }
 
