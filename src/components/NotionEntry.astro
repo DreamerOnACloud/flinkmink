@@ -1,33 +1,58 @@
 ---
-// const NOTION_API_URL = import.meta.env.NOTION_API_URL;
-
-const response = await fetch('/.netlify/functions/fetch-notion');
-
-// Log the raw response to check its content type
-const contentType = response.headers.get('content-type');
-if (contentType && contentType.includes('text/html')) {
-  console.error('Received HTML response instead of JSON:');
-  throw new Error('Server returned an HTML response instead of JSON');
-}
-
-const localNotionData = await response.json();
-const localCards = localNotionData.results; // Array of objects
+/* We don't need any server-side fetching here, so the frontmatter can be left empty */
 ---
 
 <main id="card-container">
-  {localCards.map((card: any) => (
-    <article class="card">
-      <img src={card.properties.ImageSource.rich_text[0]?.plain_text} class="card__image" />
-      <h2 class="card__heading">{card.properties.Title.rich_text[0]?.plain_text}</h2>
-      <div class="card__content">
-        <p>{card.properties.Description.rich_text[0]?.plain_text}</p>
-      </div>
-      <a href="#">
-        <div class="card__btn">READ POST</div>
-      </a>
-    </article>
-  ))}
+  <p>Loading cards...</p> <!-- Placeholder message while the data is being fetched -->
 </main>
+
+<script>
+  async function fetchNotionData() {
+    const notionApiUrl = '/.netlify/functions/fetch-notion';
+
+    try {
+      const response = await fetch(notionApiUrl);
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('text/html')) {
+        console.error('Received HTML response instead of JSON');
+        throw new Error('Server returned an HTML response instead of JSON');
+      }
+
+      const localNotionData = await response.json();
+      const localCards = localNotionData.results; // Array of objects
+
+      // Populate the card container with the fetched data
+      const cardContainer = document.getElementById('card-container');
+      // @ts-ignore
+      cardContainer.innerHTML = ''; // Clear the loading message
+
+      localCards.forEach((card: any) => {
+        const article = document.createElement('article');
+        article.classList.add('card');
+
+        article.innerHTML = `
+          <img src="${card.properties.ImageSource.rich_text[0]?.plain_text}" class="card__image" />
+          <h2 class="card__heading">${card.properties.Title.rich_text[0]?.plain_text}</h2>
+          <div class="card__content">
+            <p>${card.properties.Description.rich_text[0]?.plain_text}</p>
+          </div>
+          <a href="#">
+            <div class="card__btn">READ POST</div>
+          </a>
+        `;
+      // @ts-ignore
+        cardContainer.appendChild(article);
+      });
+    } catch (error: any) {
+      console.error('Error fetching data:', error.message);
+      const cardContainer = document.getElementById('card-container');
+      // @ts-ignore
+      cardContainer.innerHTML = '<p>Failed to load cards. Please try again later.</p>';
+    }
+  }
+
+  fetchNotionData();
+</script>
 
 <style>
   .card {
@@ -46,28 +71,28 @@ const localCards = localNotionData.results; // Array of objects
   }
 
   #card-container {
-        display: flex;
-        align-items: start;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: var(--size-fluid-4);
-        margin: var(--size-fluid-4);
-        max-width: 1200px;
-    }
+      display: flex;
+      align-items: start;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--size-fluid-4);
+      margin: var(--size-fluid-4);
+      max-width: 1200px;
+  }
 
-    .card__btn {
-        background-color: blueviolet !important;
-        color: white;
-        padding: 8px;
-        border-radius: 8px;
-        margin-top: 20px;
-        box-shadow: var(--shadow-4);
-        transition: all 250ms var(--ease-squish-3);
-    }
+  .card__btn {
+      background-color: blueviolet !important;
+      color: white;
+      padding: 8px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: var(--shadow-4);
+      transition: all 250ms var(--ease-squish-3);
+  }
 
-    .card__btn:is(:hover, :focus) {
-        text-decoration: none;
-        box-shadow: none;
-        transform: scale(.9);
-    }
+  .card__btn:is(:hover, :focus) {
+      text-decoration: none;
+      box-shadow: none;
+      transform: scale(.9);
+  }
 </style>
