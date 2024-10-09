@@ -2,6 +2,7 @@
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { ViewTransitions } from 'astro:transitions';
+import Main from '../components/Main.astro';
 
 interface Props {
   title: string;
@@ -28,9 +29,14 @@ const {
     <ViewTransitions/>
     <title>{title}</title>
   </head>
-  <body class="min-h-screen overflow-y-scroll">
+  <body class="overflow-y-scroll">
     <Header></Header>
-    <slot />
+    <Main>
+      <slot />
+    </Main>
     <Footer></Footer>
   </body>
 </html>
+
+<style>
+</style>

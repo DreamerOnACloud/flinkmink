@@ -3,12 +3,12 @@ import H1 from '../components/H1.astro';
 ---
 <div class="text-left" >
     <H1 text="About me"></H1>
-    <img src="images/profile-pic.png" alt="Profile Picture" class="rounded-full w-36 h-36">
+    <img src="/images/profile-pic.png" alt="Profile Picture" class="rounded-full w-36 h-36">
     <div class="flex items-center justify-start">
 
         <div class="prose prose-lg text-gray-700 my-5">
             <h2 class="text-2xl font-semibold leading-relaxed my-4 text-gray-800">
-                Hey there! Welcome to my website.</h2>
+                Hey there! 👋 Welcome to my website.</h2>
                 <h2 class="text-2xl font-semibold leading-relaxed my-4 text-gray-800">
                 I'm Konstantinos Norgias, a web designer & developer.
             </h2>
@@ -16,13 +16,13 @@ import H1 from '../components/H1.astro';
 
     </div>
 
-    <div class="prose prose-lg text-gray-700 my-5">
+    <div class="text__container prose prose-lg text-gray-700 my-5">
         <p class="leading-relaxed my-4">
-            Since I was a kid, I’ve been fascinated by transformers, legos, and computers.             I’ve spent countless hours building, designing, and rearranging physical stuff as well as designing, coding, testing, and playing with digital content such as mobile apps, websites, and video games.
+            Since I was a kid, I’ve been fascinated by transformers, legos, and computers.             I’ve spent countless hours building, designing, and rearranging physical stuff as well as designing, coding, testing, and playing with digital content, such as mobile apps, websites, and video games.
         </p>
 
         <p class="leading-relaxed my-4">
-            What excites me most is human-centered tech, a good story, aesthetic & intuitive design, and creating digital content that starts off as a simple idea. The digital space is the perfect playground for my interests and aptitudes.
+            What excites me the most is human-centered tech, a good story, aesthetic & intuitive design, and creating digital content that starts off as a simple idea. The digital space is the perfect playground for my interests and aptitudes.
         </p>
         <p class="leading-relaxed my-4">
             I have spent multiple professional years coding mobile and web applications, and design won me over once I hopped on a design system project, where I’ve had the opportunity to work with multiple disciplines.
@@ -36,7 +36,11 @@ import H1 from '../components/H1.astro';
             Outside of working hours, and as the yang to my yin of sitting for a living, I enjoy hiking in the outdoors. There's nothing like being in touch with nature and a breath of fresh air for reinvigorating the spirit and the creative mind.
         </p>
 
-
     </div>
-    
 </div>
+
+<style>
+    .text__container {
+        padding-bottom: 200px;
+    }
+</style>
