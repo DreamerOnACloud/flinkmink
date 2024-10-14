@@ -1,62 +1,58 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
+import H2 from "./H2.astro";
 
 // Pattern: first, define "Props", then destructure below via "Astro.props"
 type Props = {
-    //posts the collection entry/type 'posts' from 'astro/src/content/config.ts'
-    project: CollectionEntry<'projects'>
-}
+  //posts the collection entry/type 'posts' from 'astro/src/content/config.ts'
+  project: CollectionEntry<"projects">;
+};
 
 const { project } = Astro.props;
 ---
 
 <article class="card-container">
-    <div class="card-shadow bg-teal-900"></div>
+  <div class="card-shadow bg-teal-900"></div>
+  <a href={`/projects/${project.slug}`}>
     <div class="card bg-gray-100">
-        <a href={`/projects/${project.slug}`}>
-            <Image 
-                src={project.data.image}
-                width={600}
-                height={600 / 1.5}
-                alt={project.data.title}
-                class="shadow-xl mb-4 aspect-thumbnail object-cover"
-            />
-        </a>
-        <a
-            href={`/projects/${project.slug}`}
-            class="text-4xl text-zinc-900 font-semibold inline-block"
-        >
-            <h2>{project.data.title}</h2>
-        </a>
-        <p class="text-zinc-900 text-2xl line-clamp-2">
-            {project.data.description}
-        </p>
-    </div>
+      <Image
+        src={project.data.image}
+        width={600}
+        height={600 / 1.5}
+        alt={project.data.title}
+        class="shadow-xl mb-4 aspect-thumbnail object-cover"
+      />
 
+      <H2 text={project.data.title}></H2>
+
+      <p class="text-zinc-900 text-2xl line-clamp-2">
+        {project.data.description}
+      </p>
+    </div>
+  </a>
 </article>
 
 <style>
-    .card-container {
-        position: relative;
-    }
+  .card-container {
+    position: relative;
+  }
 
-    .card {
-        width: inherit;
-        height: 100%;
-        padding: 20px;
-        transition: transform 0.3s ease;
-    }
+  .card {
+    width: inherit;
+    height: 100%;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
 
-    .card-shadow {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-    }
+  .card-shadow {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+  }
 
-    .card:hover {
-        transform: translate(10px, -10px);
-    }
-
+  .card:hover {
+    transform: translate(10px, -10px);
+  }
 </style>
