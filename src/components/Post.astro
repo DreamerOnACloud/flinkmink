@@ -10,22 +10,25 @@ type Props = {
 };
 
 const { post } = Astro.props;
-// TODO: merge this and Project components to 1 generic Card component
+// TODO: merge Post and Project components to 1 generic Card component
 ---
 
 <article class="card-container">
   <div class="card-shadow bg-teal-900"></div>
   <a href={`/blog/${post.slug}`}>
   <div class="card bg-gray-100">
-    <Image
+    <div class="image-container">
+      <Image
       src={post.data.image}
       width={600}
       height={600 / 1.5}
       alt={post.data.title}
-      class="shadow-xl mb-4 aspect-thumbnail object-cover"
+      class="mb-4 aspect-thumbnail object-cover w-full h-full"
     />
+    </div>
+
     <H2 text={post.data.title}></H2>
-    <p class="text-zinc-500 text-2xl line-clamp-2">
+    <p class="text-zinc-500 text-1xl line-clamp-3">
       {post.data.description}
     </p>
   </div>
@@ -34,10 +37,12 @@ const { post } = Astro.props;
 <style>
   .card-container {
     position: relative;
+    height: 30rem;
+    width: 28rem;
   }
 
   .card {
-    width: inherit;
+    width: 100%;
     height: 100%;
     padding: 20px;
     transition: transform 0.3s ease;
@@ -53,4 +58,10 @@ const { post } = Astro.props;
   .card:hover {
     transform: translate(10px, -10px);
   }
+
+  .image-container {
+    height: 12rem;
+
+  }
+
 </style>
