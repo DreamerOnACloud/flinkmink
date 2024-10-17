@@ -13,7 +13,7 @@ const { posts } = Astro.props;
 
  <!-- CSS grid with 2 columns on "bigger" screens and 1 column on "smaller" screens -->
 <div
-    class="grid grid-cols-2 gap-x-16 gap-y-16 max-md:grid-cols-1 mb-24"
+    class="grid grid-cols-2 gap-x-72 gap-y-16 max-lg:grid-cols-1 mb-24"
 >
     <!--for each 'post', use 'Post' component and pass 'post' as property -->
     {posts.map((post) => <Post post={post}/>)}

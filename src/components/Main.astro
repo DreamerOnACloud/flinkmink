@@ -1,3 +1,21 @@
-<main class="max-sm:px-5 px-24 max-w-7xl mx-auto w-full min-h-screen">
+<main class="main-content">
     <slot></slot>
 </main>
+
+<style>
+    .main-content {
+        padding-left: 24px; /* px-24 */
+        padding-right: 24px; /* px-24 */
+        max-width: fit-content; /* max-w-fit */
+        margin-left: auto; /* mx-auto */
+        margin-right: auto; /* mx-auto */
+        width: 100%; /* w-full */
+        min-height: 100vh; /* min-h-screen */
+    }
+
+    @media (max-width: 640px) {
+        .main-content {
+            padding: 0 8px;
+        }
+    }
+</style>

@@ -6,4 +6,13 @@ type Props = {
 const { text } = Astro.props;
 ---
 
-<h1 class="text-6xl text-teal-900 font-bold mb-16 mt-8">{text}</h1>
+<h1 class="heading">{text}</h1>
+
+<style>
+    .heading {
+        font-size: 2rem;
+        color: #065f46; /* text-teal-900 */
+        font-weight: 700; /* font-bold */
+        margin-bottom: 2rem;
+    }
+</style>

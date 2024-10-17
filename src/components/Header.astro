@@ -1,23 +1,114 @@
-<header
-    class="flex justify-between items-center px-24 py-12 max-sm:px-5 max-sm:py-10 header mx-0 bg-gray-100"
->
-    <a href="/" class="flex items-center gap-x-4">
-        <p class="upppercase text-3xl text-teal-900 font-bold">K.N</p>
+<header>
+  <a href="/">
+    <div class="logo button-container">
+      <div class="button-shadow"></div>
+      <div class="button">KN</div>
+    </div>
+  </a>
+  <ul class="nav-list">
+    <a href="/blog">
+      <li class="button-container">
+        <div class="button-shadow"></div>
+        <div class="button">BLOG</div>
+      </li>
     </a>
-    <ul class="flex gap-x-8">
-        <li><a href="/" class="text-teal-900 font-bold">PROJECTS</a></li>
-        <li><a href="/blog" class="text-teal-900 font-bold">BLOG</a></li>
-        <li><a href="/about" class="text-teal-900 font-bold">ABOUT</a></li>
-    </ul>
+    <a href="/about">
+      <li class="button-container">
+        <div class="button-shadow"></div>
+        <div class="button">ABOUT</div>
+      </li>
+    </a>
+  </ul>
 </header>
 
-
 <style>
-    a:hover, p:hover {
-        color: #f5b754;
-    }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f3f4f6; /* bg-gray-100 */
+    width: inherit;
+    padding: 1rem;
+    line-height: initial;
+  }
 
-    .header {
-        width: 100vw;
-    }
+  .logo {
+    /* layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* gap-x-4 */
+
+    /* text */
+    text-transform: uppercase; /* uppercase */
+    font-size: 1.875rem; /* text-3xl */
+    color: #065f46; /* text-teal-900 */
+    font-weight: bold;
+  }
+
+  .nav-list {
+    display: flex;
+    column-gap: 0.5rem;
+  }
+
+  .nav-list li {
+    /* layout */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* vertically align text */
+
+    /* color */
+    color: #065f46;
+
+    /* typography */
+    font-weight: bold;
+  }
+
+  /* TODO: merge & clean up common CSS of button and card in HEADER.astro, Project.astro and Post.astro */
+  .button-container {
+    /* dimensions */
+    position: relative;
+    min-width: fit-content;
+    width: 6rem;
+    min-height: fit-content;
+    height: 3rem;
+  }
+
+  .button {
+    /* layout */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* vertically align text */
+
+    /* dimensions */
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    /* color */
+    background-color: #f3f4f6;
+
+    /* border */
+    border: 2px solid #065f46;
+    border-radius: 8px;
+    width: inherit;
+    height: inherit;
+
+    /* animations */
+    transition: transform 0.3s ease;
+  }
+
+  .button-shadow {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    border-radius: 8px;
+    background-color: #124e4a;
+  }
+
+  .button:hover {
+    transform: translate(4px, -4px);
+  }
+
 </style>

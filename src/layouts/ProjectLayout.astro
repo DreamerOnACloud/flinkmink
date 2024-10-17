@@ -9,7 +9,6 @@ const { Content} = await project.render(); // Get the project's body content via
 ---
 
 <GlobalLayout title={project.data.title}>
-	<Main>
 		<H1 text={project.data.title}></H1>
         <a href={project.data.url}>
             <Image
@@ -30,5 +29,4 @@ const { Content} = await project.render(); // Get the project's body content via
             </ul>
             <Content/ >
         </div>
-	</Main>
 </GlobalLayout>
