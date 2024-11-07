@@ -1,6 +1,6 @@
 ---
 author: "Dreamer On A Cloud"
-title: "Codepen Resizable Flexbox Layout with Responsive Image"
+title: "Resizable Flexbox Layout with Responsive Image"
 date: "07/11/2024"
 image: "./images/Codepen Resizable Flexbox Layout with Responsive Image.png"
 description: "This code exercise demonstrates how to build a flexible, resizable layout using CSS flexbox. The goal is to have two side-by-side elements that adjust to the parent container's size, with one element displaying text and the other displaying an image. The image is set to fill its container entirely without stretching, using `object-fit: cover`."
@@ -20,8 +20,6 @@ This code exercise demonstrates how to build a flexible, resizable layout using 
 Basic understanding of HTML structure and CSS concepts, particularly flexbox layout properties and image handling with CSS.
 
 ## Code Breakdown
-
-Break the code into clear, digestible parts. Use the following subheadings and structure as a guide for organizing your code and explanations. The content provided here is just an example—replace it with the specifics of your topic.
 
 ### 1. Setting Up the Main Structure
 
@@ -69,6 +67,8 @@ Break the code into clear, digestible parts. Use the following subheadings and s
 
 .child-1 {
   background-color: #a0c4ff;
+  font-size: 40px;
+  overflow:hidden;
 }
 
 .child-2 {
