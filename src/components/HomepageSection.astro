@@ -3,67 +3,78 @@ type Props = {
   title: string;
   text: string;
   imageSrc: string;
-}
+  variant?: 'image-first' | 'text-first'; // Attribute to determine the layout variant
+};
 
-const { title, text, imageSrc } = Astro.props;
+const { title, text, imageSrc, variant = 'text-first' } = Astro.props;
 ---
 
-<div class="homepage-section">
-  <div class="homepage-section-text">
-    {text}
-  </div>
-  <div class="homepage-section-image">
-    <img class="img" src={imageSrc} alt={title} />
-    </div>
+<div class={`homepage-section ${variant}`}>
+  {variant === 'image-first' ? (
+    <>
+      <div class="homepage-section-image">
+        <img class="img" src={imageSrc} alt={title} />
+      </div>
+      <div class="homepage-section-text">
+        {text}
+      </div>
+    </>
+  ) : (
+    <>
+      <div class="homepage-section-text">
+        {text}
+      </div>
+      <div class="homepage-section-image">
+        <img class="img" src={imageSrc} alt={title} />
+      </div>
+    </>
+  )}
 </div>
 
 <style>
   .homepage-section {
-		/* layout */
-		width: 100%;
-		min-height: 520px;
-		padding-left: 40px;
-		padding-right: 40px;
-		padding-top: 36px;
-		padding-bottom: 36px;
-		
-		display: flex;
-		gap: 96px;
+    /* layout */
+    width: 100%;
+    min-height: 520px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 36px;
+    padding-bottom: 36px;
 
-		/* color */
-		background-color: aquamarine;
-	}
+    display: flex;
+    gap: 96px;
+  }
 
-	.homepage-section-text {
-		flex: 1; /** ensure 50% width for each */
-		font-size: 40px;
-		font-weight: 600;
-	}
+  .homepage-section-text {
+    flex: 1; /* ensure 50% width for each */
+    font-size: 40px;
+    font-weight: 600;
+  }
 
-	.homepage-section-image {
-		flex: 1; /** ensure 50% width for each */
-	}
+  .homepage-section-image {
+    flex: 1; /* ensure 50% width for each */
+  }
 
-	.img {
-		object-fit: cover;
-		height: 100%;
-		border-radius: 8px;
-	}
+  .img {
+    object-fit: cover;
+    height: 100%;
+    border-radius: 8px;
+  }
 
-	/* Styles for smaller screens (e.g., below 768px) */
-	@media (max-width: 800px) {
-        .homepage-section {
-            flex-direction: column; /* Stack items vertically */
-            gap: 32px; /* Reduce gap for smaller screens */
-            padding: 40px; /* Reduce padding */
-        }
-
-        .homepage-section-text {
-            font-size: 32px; /* Smaller font size */
-        }
-
-        .homepage-section-image {
-            width: 100%; /* Image takes full width */
-        }
+  /* Styles for smaller screens (e.g., below 768px) */
+  @media (max-width: 864px) {
+    .homepage-section {
+      flex-direction: column; /* Stack items vertically */
+      gap: 32px; /* Reduce gap for smaller screens */
+      padding: 40px; /* Reduce padding */
     }
+
+    .homepage-section-text {
+      font-size: 32px; /* Smaller font size */
+    }
+
+    .homepage-section-image {
+      width: 100%; /* Image takes full width */
+    }
+  }
 </style>
