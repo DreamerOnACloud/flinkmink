@@ -10,25 +10,12 @@ const { title, text, imageSrc, variant = 'text-first' } = Astro.props;
 ---
 
 <div class={`homepage-section ${variant}`}>
-  {variant === 'image-first' ? (
-    <>
-      <div class="homepage-section-image">
-        <img class="img" src={imageSrc} alt={title} />
-      </div>
-      <div class="homepage-section-text">
-        {text}
-      </div>
-    </>
-  ) : (
-    <>
-      <div class="homepage-section-text">
-        {text}
-      </div>
-      <div class="homepage-section-image">
-        <img class="img" src={imageSrc} alt={title} />
-      </div>
-    </>
-  )}
+  <div class="homepage-section-image">
+    <img class="img" src={imageSrc} alt={title} />
+  </div>
+  <div class="homepage-section-text">
+    {text}
+  </div>
 </div>
 
 <style>
@@ -36,23 +23,36 @@ const { title, text, imageSrc, variant = 'text-first' } = Astro.props;
     /* layout */
     width: 100%;
     min-height: 520px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 36px;
-    padding-bottom: 36px;
+    padding: 36px 40px;
 
     display: flex;
     gap: 96px;
   }
 
+  /* Order for 'text-first' variant */
+  .text-first .homepage-section-image {
+    order: 2;
+  }
+  .text-first .homepage-section-text {
+    order: 1;
+  }
+
+  /* Order for 'image-first' variant */
+  .image-first .homepage-section-image {
+    order: 1;
+  }
+  .image-first .homepage-section-text {
+    order: 2;
+  }
+
   .homepage-section-text {
-    flex: 1; /* ensure 50% width for each */
+    flex: 1;
     font-size: 40px;
     font-weight: 600;
   }
 
   .homepage-section-image {
-    flex: 1; /* ensure 50% width for each */
+    flex: 1;
   }
 
   .img {
@@ -61,20 +61,26 @@ const { title, text, imageSrc, variant = 'text-first' } = Astro.props;
     border-radius: 8px;
   }
 
-  /* Styles for smaller screens (e.g., below 768px) */
+  /* Styles for smaller screens (e.g., below 864px) */
   @media (max-width: 864px) {
     .homepage-section {
-      flex-direction: column; /* Stack items vertically */
-      gap: 32px; /* Reduce gap for smaller screens */
-      padding: 40px; /* Reduce padding */
+      flex-direction: column;
+      gap: 32px;
+      padding: 40px;
+    }
+
+    /* Reset order to natural flow for smaller screens */
+    .homepage-section .homepage-section-image,
+    .homepage-section .homepage-section-text {
+      order: unset;
     }
 
     .homepage-section-text {
-      font-size: 32px; /* Smaller font size */
+      font-size: 32px;
     }
 
     .homepage-section-image {
-      width: 100%; /* Image takes full width */
+      width: 100%;
     }
   }
 </style>
