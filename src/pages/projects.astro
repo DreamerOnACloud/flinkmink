@@ -1,0 +1,19 @@
+---
+import GlobalLayout from '../layouts/GlobalLayout.astro';
+import Main from '../components/Main.astro';
+import ProjectList from '../components/ProjectList.astro';
+import H1 from '../components/H1.astro';
+
+//'astro:content' namespace provides us with both 'getCollection' here and 'defineCollection' in 'src/content/config.ts'
+import { getCollection } from 'astro:content';
+
+// The following content is queried and generated at **build** time, then deployed statically
+const projects = await getCollection("projects");
+---
+
+<GlobalLayout title="Konstantinos Norgias blog.">
+	<Main>
+		<H1 text="Projects"></H1>
+        <ProjectList projects={projects}/>
+	</Main>
+</GlobalLayout>

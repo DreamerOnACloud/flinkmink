@@ -3,6 +3,7 @@ import GlobalLayout from '../layouts/GlobalLayout.astro';
 import Main from '../components/Main.astro';
 import ProjectList from '../components/ProjectList.astro';
 import H1 from '../components/H1.astro';
+import HomepageSection from '../components/HomepageSection.astro';
 
 //'astro:content' namespace provides us with both 'getCollection' here and 'defineCollection' in 'src/content/config.ts'
 import { getCollection } from 'astro:content';
@@ -13,7 +14,64 @@ const projects = await getCollection("projects");
 
 <GlobalLayout title="Konstantinos Norgias blog.">
 	<Main>
-		<H1 text="Projects"></H1>
-        <ProjectList projects={projects}/>
+		<H1 text="Homepage"></H1>
+		<HomepageSection 
+			title="Welcome to the Cloud" 
+			text="Hi and welcome! This cloud is all about UX, UI and the dreamer’s thoughts" 
+			imageSrc="/public/images/hs1.png" />
 	</Main>
 </GlobalLayout>
+
+<style>
+	.homepage-section {
+		/* layout */
+		width: 100%;
+		min-height: 520px;
+		padding-left: 40px;
+		padding-right: 40px;
+		padding-top: 36px;
+		padding-bottom: 36px;
+		
+		display: flex;
+		gap: 96px;
+
+		/* color */
+		background-color: aquamarine;
+	}
+
+	.homepage-section-text {
+		flex: 1; /** ensure 50% width for each */
+		font-size: 40px;
+		font-weight: 600;
+	}
+
+	.homepage-section-img {
+		flex: 1; /** ensure 50% width for each */
+
+		
+	}
+
+	.img {
+		object-fit: cover;
+		height: 100%;
+		border-radius: 8px;
+	}
+
+	/* Styles for smaller screens (e.g., below 768px) */
+	@media (max-width: 800px) {
+	.homepage-section {
+		flex-direction: column; /* Stack items vertically */
+		gap: 32px; /* Reduce gap for smaller screens */
+		padding: 40px; /* Reduce padding */
+	}
+
+	.homepage-section-text {
+		font-size: 32px; /* Smaller font size */
+	}
+
+	.homepage-section-image {
+		width: 100%; /* Image takes full width */
+	}
+}
+
+</style>
