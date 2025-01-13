@@ -1,21 +1,27 @@
 <header>
-  <a href="/">
-    <div class="logo button-container">
-      <div class="button-shadow"></div>
-      <div class="button">KN</div>
-    </div>
-  </a>
   <ul class="nav-list">
+    <a href="/">
+      <li class="button-container">
+        <div class="button-shadow"></div>
+        <div class="button">HOMEPAGE</div>
+      </li>
+    </a>
     <a href="/blog">
       <li class="button-container">
         <div class="button-shadow"></div>
-        <div class="button">BLOG</div>
+        <div class="button">BLOG POSTS</div>
+      </li>
+    </a>
+    <a href="/projects">
+      <li class="button-container">
+        <div class="button-shadow"></div>
+        <div class="button">PROJECTS</div>
       </li>
     </a>
     <a href="/about">
       <li class="button-container">
         <div class="button-shadow"></div>
-        <div class="button">ABOUT</div>
+        <div class="button">ABOUT ME</div>
       </li>
     </a>
   </ul>
@@ -32,23 +38,11 @@
     line-height: initial;
   }
 
-  .logo {
-    /* layout */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem; /* gap-x-4 */
-
-    /* text */
-    text-transform: uppercase; /* uppercase */
-    font-size: 1.875rem; /* text-3xl */
-    color: #065f46; /* text-teal-900 */
-    font-weight: bold;
-  }
-
   .nav-list {
     display: flex;
-    column-gap: 0.5rem;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 40px;
   }
 
   .nav-list li {
@@ -56,12 +50,14 @@
     display: flex;
     justify-content: center;
     align-items: center; /* vertically align text */
+    width: fit-content;
 
     /* color */
     color: #065f46;
 
     /* typography */
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 700;
   }
 
   /* TODO: merge & clean up common CSS of button and card in HEADER.astro, Project.astro and Post.astro */
@@ -75,6 +71,7 @@
   }
 
   .button {
+    padding: 8px;
     /* layout */
     display: flex;
     justify-content: center;
@@ -109,6 +106,13 @@
 
   .button:hover {
     transform: translate(4px, -4px);
+  }
+
+  /* Styles for smaller screens (e.g., below 864px) */
+  @media (max-width: 864px) {
+    .button {
+      font-size: 16px;
+    }
   }
 
 </style>
