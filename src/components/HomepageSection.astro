@@ -22,11 +22,12 @@ const { title, text, imageSrc, variant = 'text-first' } = Astro.props;
   .homepage-section {
     /* layout */
     width: 100%;
-    min-height: 520px;
-    padding: 36px 40px;
+    min-height: 400px;
+    padding-top: 56px;
+    padding-bottom: 56px;;
 
     display: flex;
-    gap: 96px;
+    gap: 80px;
   }
 
   /* Order for 'text-first' variant */
@@ -60,7 +61,7 @@ const { title, text, imageSrc, variant = 'text-first' } = Astro.props;
     object-fit: cover;
     width: 100%;
     height: auto; /* Prevent stretching */
-    aspect-ratio: 16/9; /* Optional: Enforce a specific aspect ratio */
+    aspect-ratio: auto;
 
     /* border */
     border-radius: 8px;
