@@ -56,8 +56,13 @@ const { title, text, imageSrc, variant = 'text-first' } = Astro.props;
   }
 
   .img {
+    /* layout */
     object-fit: cover;
-    height: 100%;
+    width: 100%;
+    height: auto; /* Prevent stretching */
+    aspect-ratio: 16/9; /* Optional: Enforce a specific aspect ratio */
+
+    /* border */
     border-radius: 8px;
   }
 
@@ -81,6 +86,11 @@ const { title, text, imageSrc, variant = 'text-first' } = Astro.props;
 
     .homepage-section-image {
       width: 100%;
+    }
+
+    .homepage-section .img {
+      width: 100%;
+      height: auto; /* Ensure proper scaling */
     }
   }
 </style>
