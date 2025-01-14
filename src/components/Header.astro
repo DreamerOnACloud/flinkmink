@@ -3,13 +3,13 @@
     <a href="/">
       <li class="button-container">
         <div class="button-shadow"></div>
-        <div class="button">HOMEPAGE</div>
+        <div class="button">HOME</div>
       </li>
     </a>
     <a href="/blog">
       <li class="button-container">
         <div class="button-shadow"></div>
-        <div class="button">BLOG POSTS</div>
+        <div class="button">BLOG</div>
       </li>
     </a>
     <a href="/projects">
@@ -21,7 +21,7 @@
     <a href="/about">
       <li class="button-container">
         <div class="button-shadow"></div>
-        <div class="button">ABOUT ME</div>
+        <div class="button">ABOUT</div>
       </li>
     </a>
   </ul>
@@ -29,20 +29,23 @@
 
 <style>
   header {
+    /* layout */
     display: flex;
+    width: 100%;
+    line-height: initial;
     justify-content: space-between;
     align-items: center;
+    padding: 0.5rem;
+
+    /* color */
     background-color: #f3f4f6; /* bg-gray-100 */
-    width: inherit;
-    padding: 1rem;
-    line-height: initial;
+    border-bottom: 1px solid #bfbfbf;
   }
 
   .nav-list {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    padding: 0 40px;
   }
 
   .nav-list li {
