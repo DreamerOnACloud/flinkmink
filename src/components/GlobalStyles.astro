@@ -1,35 +1,34 @@
 ---
-// GlobalStyles.astro
-import "@fontsource-variable/inter";
+// Supports weights 100-900
+import '@fontsource-variable/inter';
 ---
 
 <style is:global>
-/* Base layout rules*/
+  
+/* Base layout */
 html, body {
-  min-width: 320px;         /* Prevent layout from collapsing on tiny viewports */
-  overflow-x: auto;         /* Allow horizontal scrolling if content overflows */
+  min-width: 320px;
+  overflow-x: auto;
 }
 
 /* Body styling */
 body {
   margin: 0;
   width: 100%;
-  overflow-y: scroll;       /* Reserve space for vertical scrollbar to avoid layout shift */
+  overflow-y: scroll;
 
-  /* Color and font */
   background-color: #FCFCFC;
   color: #2c2c2c;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Variable', sans-serif; /* ✅ fixed name */
+  font-weight: 400;
 
-  /* Font rendering improvements */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Anchor elements */
+/* Link reset */
 a {
-  all: unset;               /* Remove all default link styles */
-  cursor: pointer;          /* Optional: preserve clickable behavior */
+  all: unset;
+  cursor: pointer;
 }
-
-  </style>
+</style>
