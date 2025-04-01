@@ -1,12 +1,19 @@
 <div class="homepage-layout">
-  <slot></slot>
+  <slot />
 </div>
 
 <style>
   .homepage-layout {
+    /* Layout structure */
     display: flex;
     flex-direction: column;
     gap: 80px;
-    margin: 20px 0;
+
+    /* Full-width container with horizontal padding */
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding doesn't add to total width */
+
+    /* Reset default margin */
+    margin: 0;
   }
 </style>

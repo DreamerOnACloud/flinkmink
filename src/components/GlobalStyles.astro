@@ -4,19 +4,32 @@ import "@fontsource-variable/inter";
 ---
 
 <style is:global>
-    body {
-      background-color: #FCFCFC;
-      overflow-y: scroll;
-      width: 100%;
-      font-family: 'Inter', sans-serif;
+/* Base layout rules*/
+html, body {
+  min-width: 320px;         /* Prevent layout from collapsing on tiny viewports */
+  overflow-x: auto;         /* Allow horizontal scrolling if content overflows */
+}
 
-      /* Optional: improve rendering */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+/* Body styling */
+body {
+  margin: 0;
+  width: 100%;
+  overflow-y: scroll;       /* Reserve space for vertical scrollbar to avoid layout shift */
 
-    a {
-      all: unset;
-      cursor: pointer; /* optional: retain pointer behavior */
-    }
+  /* Color and font */
+  background-color: #FCFCFC;
+  color: #2c2c2c;
+  font-family: 'Inter', sans-serif;
+
+  /* Font rendering improvements */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Anchor elements */
+a {
+  all: unset;               /* Remove all default link styles */
+  cursor: pointer;          /* Optional: preserve clickable behavior */
+}
+
   </style>
