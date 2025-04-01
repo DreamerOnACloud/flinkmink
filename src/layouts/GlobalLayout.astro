@@ -1,8 +1,7 @@
 ---
 import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { ViewTransitions } from 'astro:transitions';
-import Main from '../components/Main.astro';
+import Navbar from '../components/Navbar.astro';
+import MainContentLayout from "./MainContentLayout.astro";
 import GlobalStyles from '../components/GlobalStyles.astro';
 
 interface Props {
@@ -28,15 +27,14 @@ const {
     <meta name="generator" content={Astro.generator} />
     <meta property="og:image" content={image} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <ViewTransitions/>
     <title>{title}</title>
     <GlobalStyles />
   </head>
   <body>
-    <Header></Header>
-    <Main>
+    <Navbar></Navbar>
+    <MainContentLayout>
       <slot />
-    </Main>
+    </MainContentLayout>
     <Footer></Footer>
   </body>
 </html>

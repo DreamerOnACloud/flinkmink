@@ -1,0 +1,81 @@
+---
+import Card from './Card.astro';
+
+// ✅ Import images as static Astro assets
+import monkeys from '../images/monkeys.png';
+import nikko from '../images/nikko.png';
+import yanesen from '../images/yanesen.png';
+import asakusa from '../images/asakusa.png';
+import fuji from '../images/fuji.png';
+import shibuya from '../images/shibuya.png';
+
+const cards = [
+  {
+    title: 'Yudanaka',
+    description: 'It started with "the boss of them all, since 1992"',
+    href: '#',
+    date: 'November 20, 2023',
+    imageSrc: monkeys,
+  },
+  {
+    title: 'Nikko & Akihabara',
+    description: 'Like a temple complex in the middle of the forestry mountains.',
+    href: '#',
+    date: 'November 19, 2023',
+    imageSrc: nikko,
+  },
+  {
+    title: 'Tokyo, Yanesen',
+    description: 'Almost at every corner, a small, cute shrine.',
+    href: '#',
+    date: 'November 18, 2023',
+    imageSrc: yanesen,
+  },
+  {
+    title: 'Asakusa',
+    description: 'Was a rainy morning in Tokyo, we took it chill.',
+    href: '#',
+    date: 'November 17, 2023',
+    imageSrc: asakusa,
+  },
+  {
+    title: 'Fujikawaguchiko',
+    description: 'We woke up early to catch a bus, which was in ... Shibuja.',
+    href: '#',
+    date: 'November 16, 2023',
+    imageSrc: fuji,
+  },
+  {
+    title: 'Tokyo: Shibuya & Roppongi',
+    description: 'Explored Shibuya crossing (fast & furious movie spot)... and around.',
+    href: '#',
+    date: 'November 15, 2023',
+    imageSrc: shibuya,
+  },
+];
+---
+
+
+<section class="cards-gallery">
+  {cards.map(card => (
+    <Card
+      title={card.title}
+      description={card.description}
+      date={card.date}
+      href={card.href}
+      imageSrc={card.imageSrc}
+    />
+  ))}
+</section>
+
+<style>
+  .cards-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, auto));
+    gap: 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+</style>

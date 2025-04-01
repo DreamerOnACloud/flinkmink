@@ -5,7 +5,27 @@ import Intro from '../components/Intro.astro';
 ---
 
 <GlobalLayout title="Konstantinos Norgias blog">
-	<Main>
-		<Intro/>
-	</Main>
+	<h1>About page</h1>
 </GlobalLayout>
+
+
+<script is:inline>
+  const toggle = document.getElementById("menu-toggle");
+  const links = document.getElementById("nav-links");
+  const navItems = document.querySelectorAll(".nav-links a");
+
+  toggle?.addEventListener("click", () => {
+    links?.classList.toggle("show");
+  });
+
+  navItems.forEach((link) => {
+    link.addEventListener("click", () => {
+      // Remove 'active' from all links
+      navItems.forEach((el) => el.classList.remove("active"));
+      // Set 'active' on clicked link
+      link.classList.add("active");
+      // Close mobile menu
+      links?.classList.remove("show");
+    });
+  });
+</script>

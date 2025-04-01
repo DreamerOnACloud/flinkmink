@@ -1,38 +1,16 @@
 ---
 import GlobalLayout from '../layouts/GlobalLayout.astro';
-import Main from '../components/Main.astro';
-import ProjectList from '../components/ProjectList.astro';
-import H1 from '../components/H1.astro';
-import HomepageSection from '../components/HomepageSection.astro';
+import HeroSection from '../components/HeroSection.astro';
+import AboutSection from '../components/AboutSection.astro';
+import CardsGallery from '../components/CardsGallery.astro';
+import HomepageLayout from '../layouts/HomepageLayout.astro';
 
-//'astro:content' namespace provides us with both 'getCollection' here and 'defineCollection' in 'src/content/config.ts'
-import { getCollection } from 'astro:content';
-
-// The following content is queried and generated at **build** time, then deployed statically
-const projects = await getCollection("projects");
 ---
 
 <GlobalLayout title="Konstantinos Norgias blog.">
-	<HomepageSection 
-		title="Welcome to the Cloud" 
-		text="Hi and welcome! This cloud is all about UX, UI and the dreamer’s thoughts" 
-		imageSrc="/images/hs1.png">
-	</HomepageSection>
-	<HomepageSection 
-		variant="image-first"
-		title="Welcome to the Cloud" 
-		text="I believe that tech should serve humanity, and not the other way around" 
-		imageSrc="/images/hs2.png">
-	</HomepageSection>
-	<HomepageSection 
-		title="Welcome to the Cloud" 
-		text="Through my work I aim to contribute to our collective creativity" 
-		imageSrc="/images/hs3.png">
-	</HomepageSection>
-	<HomepageSection 
-		variant="image-first"
-		title="Welcome to the Cloud" 
-		text="Explore my blog posts and delve into my thoughts and experiences" 
-		imageSrc="/images/hs4.png">
-	</HomepageSection>
+	<HomepageLayout>
+		<HeroSection></HeroSection>
+		<AboutSection></AboutSection>
+		<CardsGallery></CardsGallery>
+	</HomepageLayout>
 </GlobalLayout>

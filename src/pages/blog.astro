@@ -1,7 +1,6 @@
 ---
 //This code runs statically at build time
 import GlobalLayout from '../layouts/GlobalLayout.astro';
-import Main from "../components/Main.astro";
 import PostList from "../components/PostList.astro";
 import H1 from "../components/H1.astro";
 
@@ -13,8 +12,16 @@ const posts = await getCollection("posts");
 ---
 
 <GlobalLayout title="Blog posts">
-	<Main>
+	<div class="posts-page">
 		<H1 text="Blog posts"></H1>
-        <PostList posts={posts}/>
-	</Main>
+    <PostList posts={posts}/>
+	</div>
 </GlobalLayout>
+
+<style>
+	.posts-page {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+</style>

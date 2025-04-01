@@ -1,0 +1,160 @@
+<nav class="navbar">
+  <div class="logo">
+    <a href="/">FLINKMINK</a>
+  </div>
+
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="menu-button">MENU</label>
+
+  <ul class="nav-links">
+    <li>
+      <a href="/" class={Astro.url.pathname === "/" ? "active" : ""}>Home</a>
+    </li>
+    <li>
+      <a href="/blog" class={Astro.url.pathname === "/blog" ? "active" : ""}
+        >Posts</a>
+    </li>
+    <li>
+      <a
+        href="/merchandise"
+        class={Astro.url.pathname === "/merchandise" ? "active" : ""}
+        >Merchandise</a>
+    </li>
+    <li>
+      <a href="/about" class={Astro.url.pathname === "/about" ? "active" : ""}
+        >About Us</a>
+    </li>
+  </ul>
+</nav>
+
+<style>
+  .navbar {
+    /* layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    position: relative;
+
+    /* stroke */
+    border-bottom: 2px solid #000;
+
+    /* fill */
+    background-color: white;
+  }
+
+  /* Logo area styling */
+  .logo {
+    /* layout */
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+
+    /* fill */
+    color: #1e3350;
+
+    /* typography */
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  /* Logo image */
+  .logo img {
+    /* layout */
+    height: 30px;
+    margin-right: 0.5rem;
+  }
+
+  /* Hide the actual checkbox used for toggling */
+  .menu-toggle {
+    display: none;
+  }
+
+  /* "MENU" button label */
+  .menu-button {
+    /* layout */
+    display: none;
+    cursor: pointer;
+
+    /* typography */
+    font-size: 1rem;
+    font-weight: bold;
+
+    /* appearance */
+    background: none;
+    border: none;
+    color: black;
+  }
+
+  /* Nav links container */
+  .nav-links {
+    /* layout */
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Nav link base style */
+  .navbar a {
+    /* typography */
+    text-decoration: none;
+    font-weight: bold;
+
+    /* fill */
+    color: black;
+  }
+
+  /* Active nav link */
+  .navbar a.active {
+    /* fill */
+    color: #1793ff;
+  }
+
+  /* Logo hover effect */
+  .logo a:hover {
+    /* fill */
+    color: #1793ff;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 800px) {
+    /* Show menu toggle button */
+    .menu-button {
+      display: block;
+    }
+
+    /* Stack nav links vertically and hide initially */
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 103%;
+      left: 0;
+      background: white;
+      width: 100%;
+      height: calc(100vh - 80px);
+      box-sizing: border-box;
+      padding: 8px;
+    }
+
+    /* Show nav links when toggle is checked */
+    .menu-toggle:checked + .menu-button + .nav-links {
+      display: flex;
+    }
+
+    /* Mobile nav link style */
+    .nav-links li a {
+      display: flex;
+      height: fit-content;
+      font-size: 24px;
+      margin: 4px 0;
+    }
+
+    /* Hover background */
+    .nav-links li:hover {
+      background-color: #f0f0f0;
+    }
+  }
+</style>

@@ -1,50 +1,35 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import H1 from "../../components/H1.astro";
-import Main from "../../components/Main.astro";
 import GlobalLayout from "../../layouts/GlobalLayout.astro";
-import { Image } from "astro:assets";
+import PostLayout from "../../layouts/PostLayout.astro";
+
 
 // Dynamic routes: This piece of code - getStaticPaths - is what triggers Astro to replace '[slug].astro' file and dynamically generate a new file for each item in 'src/content/posts/'
-export const getStaticPaths = async() => {
-    const posts = await getCollection("posts");
-    const paths = posts.map((post: { slug: any; }) => {
-        return {
-            params: {
-                slug: post.slug
-            },
-            props: {
-                post
-            }
-        }
-    })
+export const getStaticPaths = async () => {
+  const posts = await getCollection("posts");
+  const paths = posts.map((post: { slug: any }) => {
+    return {
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post,
+      },
+    };
+  });
 
-    return paths; // ! It's important to return the paths in the end.
-}
+  return paths; // ! It's important to return the paths in the end.
+};
 
 type Props = {
-    post: CollectionEntry<"posts">
-}
+  post: CollectionEntry<"posts">;
+};
 
 const { post } = Astro.props;
-const { Content} = await post.render(); // Get the post's body content via out-of-the-box async 'render()' function, as a <Content/> component
+
 ---
 
 <GlobalLayout title={post.data.title}>
-	<Main>
-		<H1 text={post.data.title}></H1>
-        <a href={`/blog/${post.slug}`}>
-            <Image
-                src={post.data.image}
-                width={1024}
-                height={1024 / 1.5}
-                alt={post.data.title}
-                class="shadow-xl mb-4 aspect-thumbnail object-cover"
-            />
-        </a>
-        <!-- To get the tailwind styling: wrap content with a div that has tailwind typography classes -->
-        <div class="prose prose-2xl overflow-visible relative mb-20">
-            <Content />
-        </div>
-	</Main>
+ <PostLayout post={post}></PostLayout>
 </GlobalLayout>
+

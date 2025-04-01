@@ -1,0 +1,69 @@
+---
+import AboutImage from '../images/about-image.png'; // Replace with your actual path
+import { Image } from 'astro:assets';
+import H1 from './H1.astro';
+import H2 from './H2.astro';
+---
+
+<section class="about-section">
+  <div class="about-text">
+    <H1 text="We are Isafaye and Konstantinos."></H1>
+    <p>
+      Curious adventurers with a passion for sustainable travel, both materially and in spirit.
+      Through our content, we aim to inspire others on similar journeys.
+    </p>
+  </div>
+  <div class="about-image">
+    <Image src={AboutImage} alt="Isafaye and Konstantinos on a trip in Japan" />
+  </div>
+</section>
+
+<style>
+  .about-section {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  .about-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    gap: 20px;
+  }
+
+  .about-text h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+  }
+
+  .about-text p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .about-image {
+    flex: 1;
+  }
+
+  .about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .about-section {
+      flex-direction: column;
+    }
+
+    .about-image,
+    .about-text {
+      width: 100%;
+    }
+  }
+</style>

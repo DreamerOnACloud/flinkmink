@@ -1,5 +1,5 @@
 # Getting started
 
 ```bash
-netlify dev
+npm run dev
 ```
