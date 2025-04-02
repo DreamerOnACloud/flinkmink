@@ -10,13 +10,23 @@ type Props = {
 }
 
 const { posts } = Astro.props;
+
+// Sort by date descending and take the latest 6
+const latestPosts = posts
+  .slice()
+  .sort((a, b) => {
+    const [dayA, monthA, yearA] = a.data.date.split("/");
+    const [dayB, monthB, yearB] = b.data.date.split("/");
+    return new Date(`${yearB}-${monthB}-${dayB}`).getTime() - new Date(`${yearA}-${monthA}-${dayA}`).getTime();
+  })
+  .slice(0, 6);
 ---
 
 
 <section class="cards-gallery-layout">
   <H1 text="Latest blog posts" />
   <div class="card-grid">
-    {posts.map((post) => <Card post={post}/>)}
+    {latestPosts.map((post) => <Card post={post} />)}
   </div>
 </section>
 
