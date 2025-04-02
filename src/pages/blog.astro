@@ -1,27 +1,9 @@
 ---
-//This code runs statically at build time
-import GlobalLayout from '../layouts/GlobalLayout.astro';
-import PostGallery from "../components/PostGallery.astro";
-import H1 from "../components/H1.astro";
-
-//'astro:content' namespace provides us with both 'getCollection' here and 'defineCollection' in 'src/content/config.ts'
-import { getCollection } from "astro:content";
-
-// The following content is queried and generated at **build** time, then deployed statically
-const posts = await getCollection("posts");
+// pages/blog.astro
 ---
-
-<GlobalLayout title="Blog posts">
-	<div class="posts-page">
-		<H1 text="Blog posts"></H1>
-    <PostGallery posts={posts}/>
-	</div>
-</GlobalLayout>
-
-<style>
-	.posts-page {
-		display: flex;
-		flex-direction: column;
-		gap: 40px;
-	}
-</style>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; URL=/blog/1" />
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,93 @@
+---
+import GlobalLayout from '../../layouts/GlobalLayout.astro';
+import PostGallery from "../../components/PostGallery.astro";
+import H1 from "../../components/H1.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths({ paginate }) {
+  const posts = await getCollection("posts");
+
+  // Sort newest to oldest
+  const sorted = posts.sort((a, b) => {
+    const [dayA, monthA, yearA] = a.data.date.split("/");
+    const [dayB, monthB, yearB] = b.data.date.split("/");
+    return new Date(`${yearB}-${monthB}-${dayB}`) - new Date(`${yearA}-${monthA}-${dayA}`);
+  }).reverse();
+
+  return paginate(sorted, { pageSize: 5 });
+}
+
+const { page } = Astro.props;
+---
+
+<GlobalLayout title="Blog posts">
+  <div class="posts-page">
+    <H1 text="Blog posts" />
+
+    <PostGallery posts={page.data} />
+
+    <nav class="pagination">
+      {page.url.prev && <a href={page.url.prev}>&larr; Previous</a>}
+
+      <div class="page-links">
+        {Array.from({ length: page.totalPages }, (_, i) => i + 1).map((num) => (
+          <a
+            href={`/blog/${num}`}
+            class={num === page.currentPage ? 'active' : ''}
+          >
+            {num}
+          </a>
+        ))}
+      </div>
+
+      {page.url.next && <a href={page.url.next}>Next &rarr;</a>}
+    </nav>
+  </div>
+</GlobalLayout>
+
+<style>
+  .posts-page {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-bottom: 2rem;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .page-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .page-links a {
+    text-decoration: none;
+    color: #555;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-weight: 500;
+    border: 1px solid transparent;
+  }
+
+  .page-links a.active {
+    color: #1e40af;
+    border-bottom: 2px solid #1e40af;
+    font-weight: bold;
+  }
+
+  .pagination > a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+  }
+</style>
