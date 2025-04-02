@@ -5,12 +5,17 @@ import AboutSection from '../components/AboutSection.astro';
 import CardsGallery from '../components/CardsGallery.astro';
 import HomepageLayout from '../layouts/HomepageLayout.astro';
 
+//'astro:content' namespace provides us with both 'getCollection' here and 'defineCollection' in 'src/content/config.ts'
+import { getCollection } from "astro:content";
+
+// The following content is queried and generated at **build** time, then deployed statically
+const posts = await getCollection("posts");
 ---
 
 <GlobalLayout title="Konstantinos Norgias blog.">
 	<HomepageLayout>
 		<HeroSection></HeroSection>
 		<AboutSection></AboutSection>
-		<CardsGallery></CardsGallery>
+		<CardsGallery posts={posts}></CardsGallery>
 	</HomepageLayout>
 </GlobalLayout>
