@@ -24,13 +24,12 @@ const latestPosts = posts
 ---
 
 <ContentLayout>
-<section class="cards-gallery-layout">
-  
-    <H1 text="Latest blog posts" />
-    <div class="card-grid">
-      {latestPosts.map((post) => <Card post={post} />)}
-    </div>
-</section>
+  <section class="cards-gallery-layout">
+      <H1 text="Latest blog posts" />
+      <div class="card-grid">
+        {latestPosts.map((post) => <Card post={post} />)}
+      </div>
+  </section>
 </ContentLayout>
 
 <style>
@@ -43,9 +42,7 @@ const latestPosts = posts
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
-
     gap: 40px;
-    padding-top: 20px;
     padding-bottom: 40px;
   }
 

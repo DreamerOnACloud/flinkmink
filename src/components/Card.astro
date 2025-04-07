@@ -53,7 +53,6 @@ const date = new Date(`${year}-${month}-${day}`).toLocaleDateString("en-GB", {
     background: #fff;
     border-radius: 12px;
     overflow: hidden;
-    text-overflow: ellipsis;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
   }
@@ -95,14 +94,10 @@ const date = new Date(`${year}-${month}-${day}`).toLocaleDateString("en-GB", {
   }
 
   .description {
-    margin: 0;
-    font-size: 0.95rem;
-    color: #333;
     line-height: 1.4;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* limit to 3 lines */
     overflow: hidden;
-    text-overflow: ellipsis;
   }
 </style>

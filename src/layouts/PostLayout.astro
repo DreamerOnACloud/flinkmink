@@ -2,10 +2,23 @@
 import H1 from "../components/H1.astro";
 import { Image } from "astro:assets";
 import ContentLayout from "./ContentLayout.astro";
+import { getCollection } from "astro:content";
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+
+const posts = await getCollection("posts");
+
+// Sort by date descending (newest first)
+const sorted = posts.sort((a, b) =>
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const currentIndex = sorted.findIndex(p => p.id === post.id);
+const isLastPost = currentIndex === sorted.length - 1;
+const nextPost = !isLastPost ? sorted[currentIndex + 1] : null;
 ---
+
 
 <ContentLayout>
   <div class="blog-post-container">
@@ -17,6 +30,19 @@ const { Content } = await post.render();
       class="blog-post-image"
     />
     <Content />
+    <div class="next-post-link">
+      {nextPost ? (
+        <a href={`/blog/${nextPost.slug}`} class="next-post-button">
+          Next post →
+        </a>
+      ) : (
+        <a href="/blog" class="next-post-button">
+          ← Back to Blog posts
+        </a>
+      )}
+    </div>
+    
+    
   </div>
 </ContentLayout>
 
@@ -29,7 +55,7 @@ const { Content } = await post.render();
     width: 80%;
     padding: 1rem;
     box-sizing: border-box;
-    font-size: 24px;
+    font-size: 20px;
     margin: 4rem 0;
     line-height: 1.6;
   }
@@ -43,19 +69,37 @@ const { Content } = await post.render();
     border-radius: 8px;;
   }
 
+  .next-post-link {
+    margin-top: 3rem;
+    text-align: right;
+  }
+
+  .next-post-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #0077cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  .next-post-button:hover {
+    background-color: #005fa3;
+  }
+
   @media (max-width: 1024px) {
     .blog-post-container {
       width: 100%;
-      font-size: 20px;
+      font-size: 16px;
       margin: 2rem 0;
     }
   }
 
   @media (max-width: 600px) {
     .blog-post-container {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
-
 
 </style>
