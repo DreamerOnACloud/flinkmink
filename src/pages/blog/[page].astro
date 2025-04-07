@@ -3,18 +3,15 @@ import GlobalLayout from '../../layouts/GlobalLayout.astro';
 import PostGallery from "../../components/PostGallery.astro";
 import H1 from "../../components/H1.astro";
 
-
 import { getCollection } from "astro:content";
 import Pagination from '../../components/Pagination.astro';
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection("posts");
 
-  const sorted = posts.sort((a, b) => {
-    const [dayA, monthA, yearA] = a.data.date.split("/");
-    const [dayB, monthB, yearB] = b.data.date.split("/");
-    return new Date(`${yearB}-${monthB}-${dayB}`) - new Date(`${yearA}-${monthA}-${dayA}`);
-  }).reverse();
+  const sorted = posts.sort((a, b) =>
+    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  );
 
   return paginate(sorted, { pageSize: 5 });
 }
@@ -25,7 +22,9 @@ const { page } = Astro.props;
 <GlobalLayout title="Blog posts">
   <div class="posts-page">
     <H1 text="Blog posts" />
+    <!-- @ts-ignore -->
     <PostGallery posts={page.data} />
+    <!-- @ts-ignore -->
     <Pagination currentPage={page.currentPage} lastPage={page.lastPage} url={page.url} />
   </div>
 </GlobalLayout>

@@ -1,7 +1,6 @@
 ---
 import H1 from "../components/H1.astro";
 import { Image } from "astro:assets";
-import H2 from "../components/H2.astro";
 
 const { post } = Astro.props;
 const { Content } = await post.render();
@@ -40,4 +39,22 @@ const { Content } = await post.render();
     margin: 1rem 0;
     border-radius: 8px;;
   }
+
+  @media (max-width: 1024px) {
+    .blog-post-container {
+      width: 100%;
+      font-size: 20px;
+      line-height: 32px;
+      margin: 2rem 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .blog-post-container {
+      font-size: 16px;
+      line-height: 28px;
+    }
+  }
+
+
 </style>
