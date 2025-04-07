@@ -1,31 +1,43 @@
 ---
 import H1 from "../components/H1.astro";
 import { Image } from "astro:assets";
+import H2 from "../components/H2.astro";
 
 const { post } = Astro.props;
-const { Content } = await post.render(); // Get the post's body content via out-of-the-box async 'render()' function, as a <Content/> component
+const { Content } = await post.render();
 ---
 
 <div class="blog-post-container">
-  <H1 text={post.data.title} />
-    <Image
-      src={post.data.image}
-      width={1024}
-      height={1024 / 1.5}
-      alt={post.data.title}
-      class="shadow-xl mb-4 aspect-thumbnail object-cover"
-    />
-  <!-- To get the tailwind styling: wrap content with a div that has tailwind typography classes -->
-  <div class="prose prose-2xl overflow-visible relative mb-20">
-    <Content />
-  </div>
+  <H1 text={post.data.title}/>
+  <div>{post.data.date}</div>
+  <Image
+    src={post.data.image}
+    alt={post.data.title}
+    class="blog-post-image"
+  />
+  <Content />
 </div>
 
 <style>
+
+
   .blog-post-container {
-      display: flex;
-      flex-direction: column;
-      align-self: center;
-      max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 1rem;
+    box-sizing: border-box;
+    font-size: 24px;
+    line-height: 40px;
+    margin: 4rem 0;
+  }
+
+  .blog-post-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 2;
+    object-fit: cover;
+    margin: 1rem 0;
+    border-radius: 8px;;
   }
 </style>
