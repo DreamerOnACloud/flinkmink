@@ -2,29 +2,36 @@
 import { Image } from "astro:assets";
 import HeroImage from "../images/hero-image.png";
 import H1 from "./H1.astro";
+import ContentLayout from "../layouts/ContentLayout.astro";
 ---
-
+<ContentLayout>
 <div class="hero-section">
-  <H1 text="A travel blog dedicated to endless adventure." />
-  <Image
-    src={HeroImage}
-    alt="An road spanning to the horizon in the middle of red dessert."
-    class="hero-image"
-  />
+    <H1 text="A travel blog dedicated to endless adventure." />
+    <Image
+      src={HeroImage}
+      alt="An road spanning to the horizon in the middle of red dessert."
+      class="hero-image"
+    />
+  
 </div>
-
+</ContentLayout>
 <style>
   .hero-section {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
+    
   }
 
   .hero-image {
     width: 100%;
     height: auto;
     display: block; /* avoids extra whitespace from inline images */
-    border-radius: 20px;
+  }
+
+  img {
+    border-radius: 8px;
+    min-height: 200px;
   }
 </style>

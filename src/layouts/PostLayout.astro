@@ -1,21 +1,24 @@
 ---
 import H1 from "../components/H1.astro";
 import { Image } from "astro:assets";
+import ContentLayout from "./ContentLayout.astro";
 
 const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<div class="blog-post-container">
-  <H1 text={post.data.title}/>
-  <div>{post.data.date}</div>
-  <Image
-    src={post.data.image}
-    alt={post.data.title}
-    class="blog-post-image"
-  />
-  <Content />
-</div>
+<ContentLayout>
+  <div class="blog-post-container">
+    <H1 text={post.data.title}/>
+    <div>{post.data.date}</div>
+    <Image
+      src={post.data.image}
+      alt={post.data.title}
+      class="blog-post-image"
+    />
+    <Content />
+  </div>
+</ContentLayout>
 
 <style>
 
@@ -27,8 +30,8 @@ const { Content } = await post.render();
     padding: 1rem;
     box-sizing: border-box;
     font-size: 24px;
-    line-height: 40px;
     margin: 4rem 0;
+    line-height: 1.6;
   }
 
   .blog-post-image {
@@ -44,7 +47,6 @@ const { Content } = await post.render();
     .blog-post-container {
       width: 100%;
       font-size: 20px;
-      line-height: 32px;
       margin: 2rem 0;
     }
   }
@@ -52,7 +54,6 @@ const { Content } = await post.render();
   @media (max-width: 600px) {
     .blog-post-container {
       font-size: 16px;
-      line-height: 28px;
     }
   }
 

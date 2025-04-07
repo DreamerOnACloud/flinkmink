@@ -5,6 +5,7 @@ import H1 from "../../components/H1.astro";
 
 import { getCollection } from "astro:content";
 import Pagination from '../../components/Pagination.astro';
+import ContentLayout from '../../layouts/ContentLayout.astro';
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection("posts");
@@ -20,13 +21,15 @@ const { page } = Astro.props;
 ---
 
 <GlobalLayout title="Blog posts">
-  <div class="posts-page">
-    <H1 text="Blog posts" />
-    <!-- @ts-ignore -->
-    <PostGallery posts={page.data} />
-    <!-- @ts-ignore -->
-    <Pagination currentPage={page.currentPage} lastPage={page.lastPage} url={page.url} />
-  </div>
+  <ContentLayout>
+    <div class="posts-page">
+      <H1 text="Blog posts" />
+      <!-- @ts-ignore -->
+      <PostGallery posts={page.data} />
+      <!-- @ts-ignore -->
+      <Pagination currentPage={page.currentPage} lastPage={page.lastPage} url={page.url} />
+    </div>
+  </ContentLayout>
 </GlobalLayout>
 
 <style>

@@ -1,22 +1,28 @@
 ---
-import AboutImage from '../images/about-image.png'; // Replace with your actual path
-import { Image } from 'astro:assets';
-import H1 from './H1.astro';
-import H2 from './H2.astro';
+import { Image } from "astro:assets";
+import ContentLayout from "../layouts/ContentLayout.astro";
+import H1 from "./H1.astro";
+import AboutImage from "../images/about-image.png"; // Replace with your actual path
 ---
 
-<section class="about-section">
-  <div class="about-text">
-    <H1 text="We are Isafaye and Konstantinos."></H1>
-    <p>
-      Curious adventurers with a passion for sustainable travel, both materially and in spirit.
-      Through our content, we aim to inspire others on similar journeys.
-    </p>
-  </div>
-  <div class="about-image">
-    <Image src={AboutImage} alt="Isafaye and Konstantinos on a trip in Japan" />
-  </div>
-</section>
+<ContentLayout variation="dark">
+  <section class="about-section">
+    <div class="about-text">
+      <H1 text="We are Isafaye and Konstantinos." />
+      <p>
+        Curious adventurers with a passion for sustainable travel, both
+        materially and in spirit. Through our content, we aim to inspire others
+        on similar journeys.
+      </p>
+    </div>
+    <div class="about-image">
+      <Image
+        src={AboutImage}
+        alt="Isafaye and Konstantinos on a trip in Japan"
+      />
+    </div>
+  </section>
+</ContentLayout>
 
 <style>
   .about-section {

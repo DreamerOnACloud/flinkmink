@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import Card from "./Card.astro";
 import H1 from "./H1.astro";
+import ContentLayout from "../layouts/ContentLayout.astro";
 
 // Pattern: first, define "Props", then destructure below via "Astro.props"
 type Props = {
@@ -22,13 +23,15 @@ const latestPosts = posts
   .slice(0, 6);
 ---
 
-
+<ContentLayout>
 <section class="cards-gallery-layout">
-  <H1 text="Latest blog posts" />
-  <div class="card-grid">
-    {latestPosts.map((post) => <Card post={post} />)}
-  </div>
+  
+    <H1 text="Latest blog posts" />
+    <div class="card-grid">
+      {latestPosts.map((post) => <Card post={post} />)}
+    </div>
 </section>
+</ContentLayout>
 
 <style>
   .cards-gallery-layout {
@@ -38,8 +41,22 @@ const latestPosts = posts
 
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, auto));
+    grid-template-columns: repeat(3, 1fr);
+
+
     gap: 40px;
     padding-top: 20px;
+    padding-bottom: 40px;
+  }
+
+  @media (max-width: 960px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .card-grid {
+    grid-template-columns: 1fr;
   }
 </style>

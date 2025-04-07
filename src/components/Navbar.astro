@@ -1,17 +1,33 @@
+---
+import { Image } from "astro:assets";
+import LogoImg from "../images/flinkmink-logo.png";
+import MenuImg from "../images/feather--menu.svg";
+---
 <nav class="navbar">
-  <div class="logo">
-    <a href="/">FLINKMINK</a>
+  <a href="/">
+  <div class="logo-container">
+      <div class="logo-img">
+        <Image 
+          src={LogoImg}
+          alt="logo"
+          width={32}
+        />
+      </div>
+      <div class="logo-text">FLINKMINK</div>
   </div>
+</a>
 
   <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-  <label for="menu-toggle" class="menu-button">MENU</label>
+  <label for="menu-toggle" class="menu-button">
+    <Image src={MenuImg} alt="Menu icon" width={40}/> 
+  </label>
 
   <ul class="nav-links">
     <li>
       <a href="/" class={Astro.url.pathname === "/" ? "active" : ""}>Home</a>
     </li>
     <li>
-      <a href="/blog" class={Astro.url.pathname === "/blog" ? "active" : ""}
+      <a href="/blog" class={Astro.url.pathname.includes("/blog") ? "active" : ""}
         >Posts</a>
     </li>
     <li>
@@ -33,21 +49,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1rem;
-    position: relative;
+    padding: 1rem;
 
-    /* stroke */
-    border-bottom: 2px solid #000;
+    /* Ensures it's always stuck on top & above other content */
+    position: sticky;
+    top: 0;
+    z-index: 10; 
+
+    /* shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
     /* fill */
-    background-color: white;
+    background-color: rgb(229, 237, 243);
   }
 
   /* Logo area styling */
-  .logo {
+  .logo-container {
     /* layout */
     display: flex;
     align-items: center;
+
     padding: 0.2rem 0.5rem;
 
     /* fill */
@@ -58,8 +79,7 @@
     font-size: 1.2rem;
   }
 
-  /* Logo image */
-  .logo img {
+  .logo-img {
     /* layout */
     height: 30px;
     margin-right: 0.5rem;
@@ -120,6 +140,7 @@
 
   /* --- Responsive --- */
   @media (max-width: 800px) {
+
     /* Show menu toggle button */
     .menu-button {
       display: block;
@@ -157,4 +178,9 @@
       background-color: #f0f0f0;
     }
   }
+
+  @media (max-width: 640px) {
+    .navbar {
+      padding: 0.6rem;
+    }
 </style>
