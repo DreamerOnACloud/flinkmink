@@ -1,20 +1,28 @@
 ---
 import GlobalLayout from '../../layouts/GlobalLayout.astro';
-import PostGallery from "../../components/PostGallery.astro";
-import H1 from "../../components/H1.astro";
-
-import { getCollection } from "astro:content";
-import Pagination from '../../components/Pagination.astro';
 import ContentLayout from '../../layouts/ContentLayout.astro';
+import PostGallery from "../../components/PostGallery.astro";
+import Pagination from '../../components/Pagination.astro';
+import H1 from "../../components/H1.astro";
+import { getCollection } from "astro:content";
+
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection("posts");
 
-  const sorted = posts.sort((a, b) =>
-    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-  );
+  const sorted = posts.sort((a, b) => {
+  const [dayA, monthA, yearA] = a.data.date.split("/").map(Number);
+  const [dayB, monthB, yearB] = b.data.date.split("/").map(Number);
 
-  return paginate(sorted, { pageSize: 5 });
+  const dateA = new Date(yearA, monthA - 1, dayA);
+  const dateB = new Date(yearB, monthB - 1, dayB);
+
+  // @ts-ignore
+  return dateB - dateA; // descending order
+});
+
+
+  return paginate(sorted, { pageSize: 10 });
 }
 
 const { page } = Astro.props;
