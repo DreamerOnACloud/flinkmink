@@ -1,19 +1,12 @@
 ---
 import Footer from '../components/Footer.astro';
 import Navbar from '../components/Navbar.astro';
-import MainContentLayout from "./MainContentLayout.astro";
 import GlobalStyles from '../components/GlobalStyles.astro';
 
-interface Props {
-  title: string;
-  description?: string;
-  image?: string;
-}
-
-const { 
-	title, 
-	description = "A personal portfolio website of Konstantinos Norgias", 
-	image = "/images/tree.jpg"
+const {
+  title,
+  description = "A personal portfolio website of Konstantinos Norgias",
+  image = "/images/tree.jpg"
 } = Astro.props;
 ---
 
@@ -22,19 +15,29 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta property="og:image" content={image} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <GlobalStyles />
   </head>
   <body>
-    <Navbar></Navbar>
-    <MainContentLayout>
+    <Navbar />
+    <main class="main-content">
       <slot />
-    </MainContentLayout>
-    <Footer></Footer>
+    </main>
+    <Footer />
   </body>
 </html>
+
+<style>
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100vh;
+  }
+</style>

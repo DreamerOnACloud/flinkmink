@@ -1,43 +1,27 @@
 ---
 import GlobalLayout from '../../layouts/GlobalLayout.astro';
-import ContentLayout from '../../layouts/ContentLayout.astro';
+import Section from '../../layouts/Section.astro';
 import PostGallery from "../../components/PostGallery.astro";
 import Pagination from '../../components/Pagination.astro';
-import H1 from "../../components/H1.astro";
 import { getCollection } from "astro:content";
-
+import { sortPosts } from '../../utils/posts.js';
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getCollection("posts");
-
-  const sorted = posts.sort((a, b) => {
-  const [dayA, monthA, yearA] = a.data.date.split("/").map(Number);
-  const [dayB, monthB, yearB] = b.data.date.split("/").map(Number);
-
-  const dateA = new Date(yearA, monthA - 1, dayA);
-  const dateB = new Date(yearB, monthB - 1, dayB);
-
-  // @ts-ignore
-  return dateB - dateA; // descending order
-});
-
-
-  return paginate(sorted, { pageSize: 10 });
+  return paginate(sortPosts(posts), { pageSize: 10 });
 }
 
 const { page } = Astro.props;
 ---
 
 <GlobalLayout title="Blog posts">
-  <ContentLayout>
+  <Section>
     <div class="posts-page">
-      <H1 text="Blog posts" />
-      <!-- @ts-ignore -->
+      <h1 class="posts-headline">Blog posts</h1>
       <PostGallery posts={page.data} />
-      <!-- @ts-ignore -->
       <Pagination currentPage={page.currentPage} lastPage={page.lastPage} url={page.url} />
     </div>
-  </ContentLayout>
+  </Section>
 </GlobalLayout>
 
 <style>
@@ -48,4 +32,18 @@ const { page } = Astro.props;
     padding-bottom: 2rem;
   }
 
+  .posts-headline {
+    font-size: 40px;
+    color: var(--color-ink);
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1rem;
+    letter-spacing: -1.6px;
+  }
+
+  @media (max-width: 960px) {
+    .posts-headline {
+      font-size: 32px;
+    }
+  }
 </style>

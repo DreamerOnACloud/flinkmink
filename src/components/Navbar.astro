@@ -2,113 +2,80 @@
 import { Image } from "astro:assets";
 import LogoImg from "../images/flinkmink-logo.png";
 import MenuImg from "../images/feather--menu.svg";
+import { NAV_LINKS, BRAND } from "../config/site.js";
+
+const pathname = Astro.url.pathname;
+const isActive = (href) => href === '/' ? pathname === '/' : pathname.startsWith(href);
 ---
+
 <nav class="navbar">
   <a href="/">
-  <div class="logo-container">
+    <div class="logo-container">
       <div class="logo-img">
-        <Image 
-          src={LogoImg}
-          alt="logo"
-          width={32}
-        />
+        <Image src={LogoImg} alt="logo" width={32} />
       </div>
-      <div class="logo-text">FLINKMINK</div>
-  </div>
-</a>
+      <div class="logo-text">{BRAND}</div>
+    </div>
+  </a>
 
-  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-  <label for="menu-toggle" class="menu-button">
-    <Image src={MenuImg} alt="Menu icon" width={40}/> 
-  </label>
+  <button class="menu-btn" aria-label="Toggle navigation">
+    <Image src={MenuImg} alt="" width={40} />
+  </button>
 
   <ul class="nav-links">
-    <li>
-      <a href="/" class={Astro.url.pathname === "/" ? "active" : ""}>Home</a>
-    </li>
-    <li>
-      <a href="/blog" class={Astro.url.pathname.includes("/blog") ? "active" : ""}
-        >Posts</a>
-    </li>
-    <li>
-      <a
-        href="/merchandise"
-        class={Astro.url.pathname === "/merchandise" ? "active" : ""}
-        >Merchandise</a>
-    </li>
-    <li>
-      <a href="/about" class={Astro.url.pathname === "/about" ? "active" : ""}
-        >About Us</a>
-    </li>
+    {NAV_LINKS.map(({ href, label }) => (
+      <li>
+        <a href={href} class={isActive(href) ? 'active' : ''}>{label}</a>
+      </li>
+    ))}
   </ul>
 </nav>
 
+<script>
+  const btn = document.querySelector('.menu-btn');
+  const links = document.querySelector('.nav-links');
+  btn?.addEventListener('click', () => {
+    const open = links?.getAttribute('data-open') === 'true';
+    links?.setAttribute('data-open', String(!open));
+  });
+</script>
+
 <style>
   .navbar {
-    /* layout */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-
-    /* Ensures it's always stuck on top & above other content */
     position: sticky;
     top: 0;
-    z-index: 10; 
-
-    /* shadow */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-
-    /* fill */
-    background-color: rgb(229, 237, 243);
+    z-index: 10;
+    box-shadow: var(--shadow-nav);
+    background-color: var(--color-panel);
   }
 
-  /* Logo area styling */
   .logo-container {
-    /* layout */
     display: flex;
     align-items: center;
-
     padding: 0.2rem 0.5rem;
-
-    /* fill */
-    color: #1e3350;
-
-    /* typography */
+    color: var(--color-navy);
     font-weight: bold;
     font-size: 1.2rem;
   }
 
   .logo-img {
-    /* layout */
     height: 30px;
     margin-right: 0.5rem;
   }
 
-  /* Hide the actual checkbox used for toggling */
-  .menu-toggle {
-    display: none;
-  }
-
-  /* "MENU" button label */
-  .menu-button {
-    /* layout */
+  .menu-btn {
     display: none;
     cursor: pointer;
-
-    /* typography */
-    font-size: 1rem;
-    font-weight: bold;
-
-    /* appearance */
     background: none;
     border: none;
-    color: black;
+    padding: 0;
   }
 
-  /* Nav links container */
   .nav-links {
-    /* layout */
     list-style: none;
     display: flex;
     gap: 1rem;
@@ -116,56 +83,38 @@ import MenuImg from "../images/feather--menu.svg";
     padding: 0;
   }
 
-  /* Nav link base style */
   .navbar a {
-    /* typography */
     text-decoration: none;
     font-weight: bold;
-
-    /* fill */
     color: black;
   }
 
-  /* Active nav link */
   .navbar a.active {
-    /* fill */
-    color: #1793ff;
+    color: var(--color-primary);
   }
 
-  /* Logo hover effect */
-  .logo a:hover {
-    /* fill */
-    color: #1793ff;
-  }
-
-  /* --- Responsive --- */
   @media (max-width: 800px) {
-
-    /* Show menu toggle button */
-    .menu-button {
+    .menu-btn {
       display: block;
     }
 
-    /* Stack nav links vertically and hide initially */
     .nav-links {
       display: none;
       flex-direction: column;
       position: absolute;
       top: 103%;
       left: 0;
-      background: white;
+      background: var(--color-surface);
       width: 100%;
       height: calc(100vh - 80px);
       box-sizing: border-box;
       padding: 8px;
     }
 
-    /* Show nav links when toggle is checked */
-    .menu-toggle:checked + .menu-button + .nav-links {
+    .nav-links[data-open="true"] {
       display: flex;
     }
 
-    /* Mobile nav link style */
     .nav-links li a {
       display: flex;
       height: fit-content;
@@ -173,9 +122,8 @@ import MenuImg from "../images/feather--menu.svg";
       margin: 4px 0;
     }
 
-    /* Hover background */
     .nav-links li:hover {
-      background-color: #f0f0f0;
+      background-color: var(--color-hover-bg);
     }
   }
 
@@ -183,4 +131,5 @@ import MenuImg from "../images/feather--menu.svg";
     .navbar {
       padding: 0.6rem;
     }
+  }
 </style>

@@ -1,30 +1,25 @@
 ---
-// Supports weights 100-900
 import '@fontsource-variable/inter';
+import '../styles/tokens.css';
 ---
 
 <style is:global>
-  
-/* Base layout */
+
 html, body {
   min-width: 320px;
 }
 
-/* Body styling */
 body {
   margin: 0;
   width: 100%;
-
-  background-color: #fcfcfc;
-  color: #2c2c2c;
-  font-family: 'Inter Variable', sans-serif; /* ✅ fixed Inter name */
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: 'Inter Variable', sans-serif;
   font-weight: 400;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Link reset */
 a {
   all: unset;
   cursor: pointer;

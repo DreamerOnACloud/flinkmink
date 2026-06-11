@@ -1,59 +1,61 @@
 ---
-import type { CollectionEntry } from "astro:content";
+// Props: posts (pre-sorted array of collection entries)
 import Card from "./Card.astro";
-import H1 from "./H1.astro";
-import ContentLayout from "../layouts/ContentLayout.astro";
-
-// Pattern: first, define "Props", then destructure below via "Astro.props"
-type Props = {
-    //posts is an array of the collection entry/type 'posts' from 'astro/src/content/config.ts'
-    posts: CollectionEntry<'posts'>[]
-}
-
 const { posts } = Astro.props;
-
-// Sort by date descending and take the latest 6
-const latestPosts = posts
-  .slice()
-  .sort((a, b) => {
-    const [dayA, monthA, yearA] = a.data.date.split("/");
-    const [dayB, monthB, yearB] = b.data.date.split("/");
-    return new Date(`${yearB}-${monthB}-${dayB}`).getTime() - new Date(`${yearA}-${monthA}-${dayA}`).getTime();
-  })
-  .slice(0, 6);
 ---
 
-<ContentLayout>
-  <section class="cards-gallery-layout">
-      <H1 text="Latest blog posts" />
-      <div class="card-grid">
-        {latestPosts.map((post) => <Card post={post} />)}
-      </div>
-  </section>
-</ContentLayout>
+<section class="cards-gallery">
+  <h1 class="gallery-headline">Latest blog posts</h1>
+  <div class="card-grid">
+    {posts.map((post) => (
+      <Card
+        title={post.data.title}
+        date={post.data.date}
+        description={post.data.description}
+        image={post.data.image}
+        imageAlt={post.data.title}
+        href={`/blog/${post.slug}`}
+      />
+    ))}
+  </div>
+</section>
 
 <style>
-  .cards-gallery-layout {
+  .cards-gallery {
     display: flex;
     flex-direction: column;
+    width: 100%;
+  }
+
+  .gallery-headline {
+    font-size: 40px;
+    color: var(--color-ink);
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1rem;
+    letter-spacing: -1.6px;
   }
 
   .card-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
     gap: 40px;
     padding-bottom: 40px;
   }
 
   @media (max-width: 960px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-@media (max-width: 640px) {
-  .card-grid {
-    grid-template-columns: 1fr;
+    .gallery-headline {
+      font-size: 32px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

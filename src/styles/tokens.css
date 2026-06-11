@@ -1,0 +1,37 @@
+:root {
+  /* Brand colours */
+  --color-primary: #1793ff;
+  --color-navy: #1e3350;
+  --color-ink: #2c2c2c;
+  --color-muted: gray;
+
+  /* Surfaces */
+  --color-bg: rgb(252, 252, 252);
+  --color-surface: #ffffff;
+  --color-panel: rgb(229, 237, 243);
+
+  /* Borders / hover */
+  --color-border: #eee;
+  --color-hover-bg: #f0f0f0;
+
+  /* Post navigation button */
+  --color-btn-bg: #0077cc;
+  --color-btn-hover: #005fa3;
+
+  /* Pagination */
+  --color-pagination-active: #1e40af;
+  --color-pagination-link: #555;
+
+  /* Shadows */
+  --shadow-card: 0 10px 20px rgba(0, 0, 0, 0.2);
+  --shadow-nav: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  /* Spacing */
+  --space-section: 40px;
+  --space-section-sm: 16px;
+
+  /* Radius */
+  --radius-card: 12px;
+  --radius-card-lg: 1rem;
+  --radius-image: 8px;
+}

@@ -1,27 +1,27 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import Post from "./Post.astro";
-
-// Pattern: first, define "Props", then destructure below via "Astro.props"
-type Props = {
-    //posts is an array of the collection entry/type 'posts' from 'astro/src/content/config.ts'
-    posts: CollectionEntry<'posts'>[]
-}
-
+// Props: posts (array of collection entries)
+import PostCard from "./PostCard.astro";
 const { posts } = Astro.props;
 ---
 
- <!-- CSS grid with 2 columns on "bigger" screens and 1 column on "smaller" screens -->
 <div class="posts-container">
-    <!--for each 'post', use 'Post' component and pass 'post' as property -->
-    {posts.map((post) => <Post post={post}/>)}
+  {posts.map((post) => (
+    <PostCard
+      title={post.data.title}
+      date={post.data.date}
+      description={post.data.description}
+      image={post.data.image}
+      imageAlt={post.data.title}
+      href={`/blog/${post.slug}`}
+    />
+  ))}
 </div>
 
 <style>
-    .posts-container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+  .posts-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 </style>

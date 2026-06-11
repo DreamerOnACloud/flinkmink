@@ -1,37 +1,42 @@
 ---
+// Props: headline, image, imageAlt
 import { Image } from "astro:assets";
-import HeroImage from "../images/hero-image.png";
-import H1 from "./H1.astro";
-import ContentLayout from "../layouts/ContentLayout.astro";
+const { headline, image, imageAlt } = Astro.props;
 ---
-<ContentLayout>
+
 <div class="hero-section">
-    <H1 text="A travel blog dedicated to endless adventure." />
-    <Image
-      src={HeroImage}
-      alt="An road spanning to the horizon in the middle of red dessert."
-      class="hero-image"
-    />
-  
+  <h1 class="hero-headline">{headline}</h1>
+  <Image src={image} alt={imageAlt} class="hero-image" />
 </div>
-</ContentLayout>
+
 <style>
   .hero-section {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
-    
+  }
+
+  .hero-headline {
+    font-size: 40px;
+    color: var(--color-ink);
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1rem;
+    letter-spacing: -1.6px;
   }
 
   .hero-image {
     width: 100%;
     height: auto;
-    display: block; /* avoids extra whitespace from inline images */
+    display: block;
+    border-radius: var(--radius-image);
+    min-height: 200px;
   }
 
-  img {
-    border-radius: 8px;
-    min-height: 200px;
+  @media (max-width: 960px) {
+    .hero-headline {
+      font-size: 32px;
+    }
   }
 </style>

@@ -1,21 +1,34 @@
 ---
 import GlobalLayout from '../layouts/GlobalLayout.astro';
+import Section from '../layouts/Section.astro';
 import HeroSection from '../components/HeroSection.astro';
 import AboutSection from '../components/AboutSection.astro';
 import CardsGallery from '../components/CardsGallery.astro';
-import HomepageLayout from '../layouts/HomepageLayout.astro';
-
-//'astro:content' namespace provides us with both 'getCollection' here and 'defineCollection' in 'src/content/config.ts'
 import { getCollection } from "astro:content";
+import { sortPosts } from '../utils/posts.js';
+import HeroImage from '../images/hero-image.png';
+import AboutImage from '../images/about-image.png';
 
-// The following content is queried and generated at **build** time, then deployed statically
-const posts = await getCollection("posts");
+const posts = sortPosts(await getCollection("posts")).slice(0, 6);
 ---
 
 <GlobalLayout title="Konstantinos Norgias blog.">
-	<HomepageLayout>
-		<HeroSection></HeroSection>
-		<AboutSection></AboutSection>
-		<CardsGallery posts={posts}></CardsGallery>
-	</HomepageLayout>
+  <Section>
+    <HeroSection
+      headline="A travel blog dedicated to endless adventure."
+      image={HeroImage}
+      imageAlt="A road spanning to the horizon in the middle of a red desert."
+    />
+  </Section>
+  <Section variation="dark">
+    <AboutSection
+      headline="We are Isafaye and Konstantinos."
+      body="Curious adventurers with a passion for sustainable travel, both materially and in spirit. Through our content, we aim to inspire others on similar journeys."
+      image={AboutImage}
+      imageAlt="Isafaye and Konstantinos on a trip in Japan"
+    />
+  </Section>
+  <Section>
+    <CardsGallery posts={posts} />
+  </Section>
 </GlobalLayout>

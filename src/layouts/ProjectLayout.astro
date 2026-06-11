@@ -1,31 +1,40 @@
 ---
-import H1 from "../components/H1.astro";
 import GlobalLayout from "./GlobalLayout.astro";
 import { Image } from "astro:assets";
 
-const { project } =Astro.props;
-const { Content} = await project.render(); // Get the project's body content via out-of-the-box async 'render()' function, as a <Content/> component
+const { project } = Astro.props;
+const { Content } = await project.render();
 ---
 
 <GlobalLayout title={project.data.title}>
-		<H1 text={project.data.title}></H1>
-        <a href={project.data.url}>
-            <Image
-                src={project.data.image}
-                width={1024}
-                height={1024 / 1.5}
-                alt={project.data.title}
-                class="shadow-xl mb-4 aspect-thumbnail object-cover"
-            />
-        </a>
-        <!-- To get the tailwind styling: wrap content with a div that has tailwind typography classes -->
-        <div class="prose prose-2xl overflow-visible relative mb-20">
-            <p>{project.data.description}</p>
-            <ul>Tags:
-                {project.data.tags.map((tag: string[]) => 
-                    <li>{tag}</li>    
-                )}
-            </ul>
-            <Content/ >
-        </div>
+  <h1 class="project-title">{project.data.title}</h1>
+  <a href={project.data.url}>
+    <Image
+      src={project.data.image}
+      width={1024}
+      height={1024 / 1.5}
+      alt={project.data.title}
+      class="shadow-xl mb-4 aspect-thumbnail object-cover"
+    />
+  </a>
+  <div class="prose prose-2xl overflow-visible relative mb-20">
+    <p>{project.data.description}</p>
+    <ul>Tags:
+      {project.data.tags.map((tag) => (
+        <li>{tag}</li>
+      ))}
+    </ul>
+    <Content />
+  </div>
 </GlobalLayout>
+
+<style>
+  .project-title {
+    font-size: 40px;
+    color: var(--color-ink);
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1rem;
+    letter-spacing: -1.6px;
+  }
+</style>

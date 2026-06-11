@@ -1,76 +1,71 @@
 ---
-const youtubeUrl = 'https://www.youtube.com/@Flinkmink';
-const etsyUrl = 'https://flinkmink.etsy.com';
+import { SOCIAL_LINKS, BRAND } from "../config/site.js";
 const currentYear = new Date().getFullYear();
 ---
 
-<div class="footer bg-gray-100 text-teal-900" >
-    <div class="footer-left">
-        <a href="/">
-            <div class="footer-left-content">
-                FLINKMINK - Copyright &copy; {currentYear}
-            </div>
-        </a>
-        
-    </div>
+<div class="footer">
+  <div class="footer-left">
+    <a href="/">
+      <div class="footer-left-content">
+        {BRAND} - Copyright &copy; {currentYear}
+      </div>
+    </a>
+  </div>
 
-    <div class="footer-right">
-        <div class="footer-right-content">
-            <div class="footer-right-content-element">
-                <a href={youtubeUrl}> Youtube </a>
-            </div>
-            <div class="footer-right-content-element">
-                <a href={etsyUrl}> Etsy </a>
-            </div>
-        </div>
+  <div class="footer-right">
+    <div class="footer-right-content">
+      <div class="footer-right-content-element">
+        <a href={SOCIAL_LINKS.youtube}> Youtube </a>
+      </div>
+      <div class="footer-right-content-element">
+        <a href={SOCIAL_LINKS.etsy}> Etsy </a>
+      </div>
     </div>
+  </div>
 </div>
 
 <style>
-    a {
-    /* typography */
+  a {
     text-decoration: none;
     font-weight: bold;
+    color: var(--color-ink);
+  }
 
-    /* fill */
-    color: #2c2c2c;
-    }
+  a:hover {
+    color: var(--color-primary);
+  }
 
-    a:hover {
-    /* fill */
-    color: #1793ff;
-}
-    .footer {
-        display: flex;
-        width: 100%;
-        padding: 40px;
-        box-sizing: border-box;
-        border-top: 1px solid #DDDDDD;
-        background-color: rgb(229, 237, 243);
-    }
+  .footer {
+    display: flex;
+    width: 100%;
+    padding: var(--space-section);
+    box-sizing: border-box;
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-panel);
+  }
 
-    .footer-left {
-        display: flex;
-        width: 50%;
-        align-items: center;
-    }
+  .footer-left {
+    display: flex;
+    width: 50%;
+    align-items: center;
+  }
 
-    .footer-left-content {
-        font-size: large;
-        font-weight: bold;
-    }
+  .footer-left-content {
+    font-size: large;
+    font-weight: bold;
+  }
 
-    .footer-right-content {
-        font-weight: bold;
-    }
+  .footer-right {
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+  }
 
-    .footer-right {
-        display: flex;
-        width: 50%;
-        justify-content: flex-end;
-    }
+  .footer-right-content {
+    font-weight: bold;
+  }
 
-    .footer-right-content-element {
-        padding: 8px;
-    }
+  .footer-right-content-element {
+    padding: 8px;
+  }
 </style>

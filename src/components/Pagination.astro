@@ -1,13 +1,5 @@
 ---
-interface Props {
-  currentPage: number;
-  lastPage: number;
-  url: {
-    prev?: string;
-    next?: string;
-  };
-}
-
+// Props: currentPage, lastPage, url { prev?, next? }
 const { currentPage, lastPage, url } = Astro.props;
 ---
 
@@ -18,10 +10,7 @@ const { currentPage, lastPage, url } = Astro.props;
 
   <div class="page-links">
     {Array.from({ length: lastPage }, (_, i) => i + 1).map((num) => (
-      <a
-        href={`/blog/${num}`}
-        class={num === currentPage ? 'active' : ''}
-      >
+      <a href={`/blog/${num}`} class={num === currentPage ? 'active' : ''}>
         {num}
       </a>
     ))}
@@ -53,7 +42,7 @@ const { currentPage, lastPage, url } = Astro.props;
 
   .page-links a {
     text-decoration: none;
-    color: #555;
+    color: var(--color-pagination-link);
     padding: 0.25rem 0.75rem;
     border-radius: 4px;
     font-weight: 500;
@@ -61,20 +50,20 @@ const { currentPage, lastPage, url } = Astro.props;
   }
 
   .page-links a.active {
-    color: #1e40af;
-    border-bottom: 2px solid #1e40af;
+    color: var(--color-pagination-active);
+    border-bottom: 2px solid var(--color-pagination-active);
     font-weight: bold;
   }
 
   .pagination > a {
     text-decoration: none;
     font-weight: bold;
-    color: #333;
+    color: var(--color-ink);
   }
 
   .placeholder {
     visibility: hidden;
     font-weight: bold;
-    color: #333;
+    color: var(--color-ink);
   }
 </style>

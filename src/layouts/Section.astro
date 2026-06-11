@@ -1,48 +1,43 @@
 ---
 const { variation = "light" } = Astro.props;
 ---
-<div class={`content-bg ${variation}`}>
-  <div class="content">
+<div class={`section-bg ${variation}`}>
+  <div class="section-content">
     <slot />
   </div>
 </div>
 
-
 <style>
-  .content-bg {
+  .section-bg {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
-    background-color: var(--bg-color);
   }
 
-  .content {
+  .section-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
-
     overflow: hidden;
-
     width: 100%;
     max-width: 1280px;
-
-    padding: 40px;
+    padding: var(--space-section);
   }
 
   .light {
-    background-color: rgb(252, 252, 252);
-    }
+    background-color: var(--color-bg);
+  }
 
   .dark {
-    background-color: rgb(229 237 243);
+    background-color: var(--color-panel);
   }
 
   @media (max-width: 640px) {
-    .content {
-      padding: 16px;
+    .section-content {
+      padding: var(--space-section-sm);
     }
   }
 </style>
