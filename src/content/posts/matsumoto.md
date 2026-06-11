@@ -1,7 +1,7 @@
 ---
 title: "Matsumoto"
 image: "./images/matsumoto.png"
-date: "21/11/2023"
+date: 2023-11-21
 description: "Interesting architecture, indoors with steep narrow stairs, great view from it of Japanese alps with snowy peaks."
 tags: ["japan"]
 author: "Dreamer On A Cloud"

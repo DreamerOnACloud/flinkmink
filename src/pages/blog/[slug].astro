@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import GlobalLayout from "../../layouts/GlobalLayout.astro";
 import Section from "../../layouts/Section.astro";
-import { sortPosts } from "../../utils/posts.js";
+import { sortPosts, parsePostDate } from "../../utils/posts.js";
 
 export const getStaticPaths = async () => {
   const posts = await getCollection("posts");
@@ -25,7 +25,7 @@ const { Content } = await post.render();
   <Section>
     <div class="blog-post-container">
       <h1 class="post-title">{post.data.title}</h1>
-      <div class="post-date">{post.data.date}</div>
+      <div class="post-date">{parsePostDate(post.data.date)}</div>
       <Image
         src={post.data.image}
         alt={post.data.title}

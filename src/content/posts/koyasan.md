@@ -1,7 +1,7 @@
 ---
 title: "Koyasan"
 image: "./images/koyasan.png"
-date: "25/11/2023"
+date: 2023-11-25
 description: "The area was impressive, with huge Cedar trees all over, thick as elephants and 30 meters high."
 tags: ["japan"]
 author: "Dreamer On A Cloud"

@@ -1,7 +1,7 @@
 ---
 title: "Kyoto - Day 2"
 image: "./images/kyoto-day-2.png"
-date: "24/11/2023"
+date: 2023-11-24
 description: "The row of gates was endless, so much longer than we thought. "
 tags: ["japan"]
 author: "Dreamer On A Cloud"

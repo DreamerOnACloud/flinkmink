@@ -5,9 +5,10 @@ const postsCollection = defineCollection({
     schema: ({image}) => z.object({ // 'image()' is imported implicitly and available the moment we define 'schema' as a (arrow) function
         author: z.string(),
         title: z.string(),
-        date: z.string(),
+        date: z.coerce.date(),
         image: image(),
         description: z.string(),
+        tags: z.array(z.string()),
     })
 })
 

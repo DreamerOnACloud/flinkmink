@@ -1,7 +1,7 @@
 ---
 title: "Magome, Tsumago, Nagiso"
 image: "./images/magome.png"
-date: "22/11/2023"
+date: 2023-11-22
 description: "Magome and Tsumago are famous post towns of the past, and the trail is a legendary samurai one, that connected Tokyo with Kyoto during the Edo period."
 tags: ["japan"]
 author: "Dreamer On A Cloud"
