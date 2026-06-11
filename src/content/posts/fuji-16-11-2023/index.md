@@ -2,7 +2,7 @@
 author: "Dreamer On A Cloud"
 title: "Fujikawaguchiko"
 date: 2023-11-16
-image: "./images/fuji.png"
+image: "./hero.png"
 description: "We woke up early to catch a bus, which was in Shibuja. Off to Fuji!"
 tags: ["japan", "tokyo"]
 ---

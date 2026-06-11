@@ -2,7 +2,7 @@
 author: "Dreamer On A Cloud"
 title: "Yudanaka, Yamanouchi"
 date: 2023-11-20
-image: "./images/yudanaka.png"
+image: "./hero.png"
 description: "Once at the snow monkey park, and to our amazement and delight, we spotted monkeys even before entering."
 tags: ["japan", "nature"]
 ---

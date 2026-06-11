@@ -1,6 +1,6 @@
 ---
 title: "Kyoto - Day 1"
-image: "./images/kyoto-day-1.png"
+image: "./hero.png"
 date: 2023-11-23
 description: "We started early to make it to the golden temple (kinkaku-ji) before the crowd. Took a bus, as the distances are still huge im Kyoto."
 tags: ["japan"]

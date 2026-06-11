@@ -2,7 +2,7 @@
 author: "Dreamer On A Cloud"
 title: "Nikko & Akihabara"
 date: 2023-11-19
-image: "./images/nikko.png"
+image: "./hero.png"
 description: "Nikko is like a temple complex in the middle of the foresty mountains."
 tags: ["japan", "tokyo"]
 ---

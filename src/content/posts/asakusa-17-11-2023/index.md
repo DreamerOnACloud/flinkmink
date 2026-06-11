@@ -2,7 +2,7 @@
 author: "Dreamer On A Cloud"
 title: "Asakusa"
 date: 2023-11-17
-image: "./images/asakusa.png"
+image: "./hero.png"
 description: "Travelled to the other side of the city, Asakusa. It looked completely different."
 tags: ["japan", "tokyo"]
 ---

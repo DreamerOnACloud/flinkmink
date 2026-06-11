@@ -1,6 +1,6 @@
 ---
 title: "Matsumoto"
-image: "./images/matsumoto.png"
+image: "./hero.png"
 date: 2023-11-21
 description: "Interesting architecture, indoors with steep narrow stairs, great view from it of Japanese alps with snowy peaks."
 tags: ["japan"]

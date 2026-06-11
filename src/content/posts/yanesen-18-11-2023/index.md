@@ -2,7 +2,7 @@
 author: "Dreamer On A Cloud"
 title: "Yanesen"
 date: 2023-11-18
-image: "./images/yanesen.png"
+image: "./hero.png"
 description: "Almost at every corner, a small, cute shrine."
 tags: ["japan", "tokyo"]
 ---

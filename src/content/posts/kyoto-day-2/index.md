@@ -1,6 +1,6 @@
 ---
 title: "Kyoto - Day 2"
-image: "./images/kyoto-day-2.png"
+image: "./hero.png"
 date: 2023-11-24
 description: "The row of gates was endless, so much longer than we thought. "
 tags: ["japan"]

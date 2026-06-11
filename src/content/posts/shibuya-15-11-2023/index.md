@@ -1,7 +1,7 @@
 ---
 title: "Shibuya & Roppongi"
 date: 2023-11-15
-image: "./images/shibuya.png"
+image: "./hero.png"
 description: "Explored Shibuja crossing (fast & furious movie spot) and around."
 tags: ["japan", "tokyo"]
 author: "Dreamer On A Cloud"

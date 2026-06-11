@@ -1,6 +1,6 @@
 ---
 title: "Koyasan"
-image: "./images/koyasan.png"
+image: "./hero.png"
 date: 2023-11-25
 description: "The area was impressive, with huge Cedar trees all over, thick as elephants and 30 meters high."
 tags: ["japan"]
